@@ -3,448 +3,525 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MCC Security BR | Matheus Camara Carvalho (peixinn) — Web3 & Offensive Security</title>
-  <meta name="description" content="MCC Security BR — Consultoria em Segurança da Informação, Auditoria de Smart Contracts & L1/L2 Blockchains e Pesquisa de Vulnerabilidades liderada por Matheus Camara Carvalho (peixinn). Reconhecido pela NASA, U.S. DoD, Immunefi e HackenProof." />
+  <title>MCC Security BR | Matheus Camara Carvalho — Web3 Auditing &amp; Offensive Security</title>
+  <meta name="description" content="MCC Security BR — Consultoria em Segurança Ofensiva, Auditoria de Smart Contracts &amp; Blockchains L1/L2 liderada por Matheus Camara Carvalho (@mccsecuritybr). Reconhecido pela NASA, U.S. Dept. of Defense, Immunefi ($13,497+ / Top #214) e HackenProof ($4,068+ / Rank #394)." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            cyber: {
-              bg: '#06080f',
-              card: '#0d121f',
-              border: '#1e293b',
-              accent: '#10b981',
-              cyan: '#06b6d4',
-            }
           }
         }
       }
     }
   </script>
   <style>
+    :root {
+      color-scheme: dark;
+    }
     body {
-      background-color: #06080f;
+      background-color: #03060c;
       color: #e2e8f0;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 35%),
-        radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.08) 0%, transparent 35%),
-        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+      background-image:
+        radial-gradient(circle at 12% 12%, rgba(16, 185, 129, 0.11) 0%, transparent 32%),
+        radial-gradient(circle at 88% 18%, rgba(6, 182, 212, 0.10) 0%, transparent 34%),
+        radial-gradient(circle at 50% 60%, rgba(59, 130, 246, 0.06) 0%, transparent 45%);
     }
-    .grid-pattern {
-      background-size: 40px 40px;
-      background-image: 
-        linear-gradient(to right, rgba(30, 41, 59, 0.22) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
+    .cyber-grid {
+      background-size: 48px 48px;
+      background-image:
+        linear-gradient(to right, rgba(30, 41, 59, 0.24) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 41, 59, 0.24) 1px, transparent 1px);
     }
-    .glass-card {
-      background: rgba(13, 18, 31, 0.82);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(51, 65, 85, 0.55);
-      transition: all 0.25s ease;
+    .glass-panel {
+      background: linear-gradient(180deg, rgba(13, 20, 36, 0.86) 0%, rgba(8, 13, 24, 0.92) 100%);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .glass-card:hover {
+    .glass-panel:hover {
       border-color: rgba(16, 185, 129, 0.55);
-      box-shadow: 0 10px 35px -10px rgba(16, 185, 129, 0.18);
-      transform: translateY(-2px);
+      box-shadow: 0 18px 45px -15px rgba(16, 185, 129, 0.20), 0 0 25px -5px rgba(6, 182, 212, 0.12);
+      transform: translateY(-3px);
+    }
+    .glow-badge {
+      box-shadow: 0 0 25px -4px rgba(16, 185, 129, 0.35);
     }
     [data-lang="en"] .lang-pt { display: none !important; }
     [data-lang="pt"] .lang-en { display: none !important; }
   </style>
 </head>
-<body data-lang="pt" class="antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen flex flex-col">
+<body data-lang="pt" class="antialiased selection:bg-emerald-400 selection:text-slate-950 min-h-screen flex flex-col">
 
-  <!-- Top Navbar -->
-  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-[#06080f]/85 backdrop-blur-md">
+  <!-- Top Telemetry Bar -->
+  <div class="bg-[#020408] border-b border-slate-800/80 text-[11px] font-mono text-slate-400 py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          STATUS: ACTIVE RESEARCH LAB
+        </span>
+        <span class="hidden sm:inline text-slate-600">|</span>
+        <span class="hidden sm:inline">HANDLE: <strong class="text-white">@mccsecuritybr</strong></span>
+        <span class="hidden md:inline text-slate-600">|</span>
+        <span class="hidden md:inline">CNPJ: <strong class="text-slate-200">67.020.409/0001-40</strong></span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="mailto:matheus@mccsecuritybr.com" class="text-emerald-400 hover:text-emerald-300 transition font-medium">
+          matheus@mccsecuritybr.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-[#03060c]/85 backdrop-blur-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-cyan-500 p-[1px]">
-          <div class="w-full h-full bg-[#06080f] rounded-[7px] flex items-center justify-center font-mono font-bold text-emerald-400 text-lg group-hover:bg-transparent group-hover:text-slate-950 transition">
-            MCC
-          </div>
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="relative">
+          <img src="assets/matheus-avatar.png" alt="Matheus Camara Carvalho" class="w-11 h-11 rounded-xl object-cover border border-emerald-500/60 shadow-lg shadow-emerald-500/10" />
+          <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#03060c] flex items-center justify-center text-[9px] text-slate-950 font-bold" title="KYC Verified">✓</span>
         </div>
         <div>
-          <span class="font-bold tracking-tight text-white text-lg block leading-none">MCC Security <span class="text-emerald-400">BR</span></span>
-          <span class="font-mono text-xs text-slate-400">@peixinn • Web3 &amp; AppSec</span>
+          <span class="font-extrabold tracking-tight text-white text-lg block leading-none">
+            MCC Security <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">BR</span>
+          </span>
+          <span class="font-mono text-xs text-slate-400">Matheus Camara Carvalho</span>
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
-        <a href="#reconhecimentos" class="hover:text-emerald-400 transition">
-          <span class="lang-pt">Reconhecimentos</span>
-          <span class="lang-en">Recognition</span>
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <a href="#credenciais" class="hover:text-emerald-400 transition">
+          <span class="lang-pt">Credenciais &amp; Provas</span>
+          <span class="lang-en">Credentials &amp; Proofs</span>
         </a>
-        <a href="#provas" class="hover:text-emerald-400 transition">
-          <span class="lang-pt">Track Record &amp; Provas</span>
-          <span class="lang-en">Proof of Work</span>
+        <a href="#achados" class="hover:text-emerald-400 transition">
+          <span class="lang-pt">Destaques Técnicos</span>
+          <span class="lang-en">Highlighted Findings</span>
         </a>
         <a href="#servicos" class="hover:text-emerald-400 transition">
-          <span class="lang-pt">Serviços</span>
-          <span class="lang-en">Services</span>
+          <span class="lang-pt">Auditoria &amp; Serviços</span>
+          <span class="lang-en">Security Services</span>
         </a>
         <a href="#institucional" class="hover:text-emerald-400 transition">
           <span class="lang-pt">Empresa (CNPJ)</span>
-          <span class="lang-en">Company Info</span>
+          <span class="lang-en">Corporate Entity</span>
         </a>
       </nav>
 
       <div class="flex items-center gap-3">
-        <button id="langToggle" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-900/80 hover:border-emerald-500/60 text-xs font-mono text-slate-200 flex items-center gap-1.5 transition" title="Switch Language / Mudar Idioma">
+        <button onclick="toggleLanguage()" class="px-3.5 py-2 rounded-xl border border-slate-700/80 bg-slate-900/90 hover:border-emerald-400/60 text-xs font-mono text-slate-200 flex items-center gap-2 transition" title="Alternar Idioma / Switch Language">
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span id="langLabel">EN / PT</span>
+          <span class="lang-pt">🇧🇷 PT-BR ⇄ EN</span>
+          <span class="lang-en">🇺🇸 EN ⇄ PT-BR</span>
         </button>
-        <a href="#contato" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition shadow-lg shadow-emerald-500/20">
-          <span class="lang-pt">Falar Conosco</span>
-          <span class="lang-en">Contact Us</span>
+        <a href="mailto:matheus@mccsecuritybr.com" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-bold text-xs sm:text-sm transition shadow-lg shadow-emerald-500/20">
+          <span>matheus@mccsecuritybr.com</span>
         </a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="relative grid-pattern pt-16 pb-20 lg:pt-24 lg:pb-28 border-b border-slate-800/80 overflow-hidden">
+  <section class="relative cyber-grid pt-14 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-800/80 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 font-mono text-xs mb-6">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="lang-pt">PESQUISA DE VULNERABILIDADES • AUDITORIA SMART CONTRACTS &amp; L1/L2</span>
-        <span class="lang-en">VULNERABILITY RESEARCH • SMART CONTRACT &amp; L1/L2 SECURITY AUDITING</span>
-      </div>
 
       <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Hero Content -->
         <div class="lg:col-span-7 space-y-6">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-            <span class="lang-pt">Segurança Ofensiva &amp; Auditoria <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Web3 de Alto Impacto</span></span>
-            <span class="lang-en">High-Impact <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Web3 &amp; Offensive Security</span> Research</span>
-          </h1>
+          <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/35 bg-emerald-500/10 text-emerald-300 font-mono text-xs glow-badge">
+            <span>🛡️ SMART CONTRACT &amp; L1/L2 AUDITING</span>
+            <span class="text-slate-500">•</span>
+            <span>NASA • U.S. DoD • MOZILLA RECOGNIZED</span>
+          </div>
 
-          <p class="text-lg text-slate-300 leading-relaxed max-w-2xl">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08]">
             <span class="lang-pt">
-              A <strong>MCC Security BR</strong> é a consultoria e laboratório de pesquisa em segurança da informação liderada por <strong>Matheus Camara Carvalho (<code class="text-emerald-400 font-mono">peixinn</code>)</strong>. Especializada na descoberta de vulnerabilidades críticas em protocolos DeFi, blockchains L1/L2, pontes cross-chain e infraestruturas governamentais globais.
+              Engenharia de Segurança Ofensiva &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">Auditoria Web3</span>
             </span>
             <span class="lang-en">
-              <strong>MCC Security BR</strong> is an information security research firm led by independent security researcher <strong>Matheus Camara Carvalho (<code class="text-emerald-400 font-mono">peixinn</code>)</strong>. Specialized in uncovering critical vulnerabilities across DeFi protocols, L1/L2 blockchains, cross-chain bridges, and mission-critical infrastructure.
+              Offensive Security Engineering &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">Web3 Auditing</span>
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+            <span class="lang-pt">
+              Liderada por <strong>Matheus Camara Carvalho</strong> (<code class="text-emerald-400 font-mono">@mccsecuritybr</code>), a <strong>MCC Security BR</strong> atua na linha de frente da segurança cibernética global — com vulnerabilidades críticas e médias validadas e recompensadas em protocolos DeFi, pontes cross-chain e clientes blockchain na <strong>Immunefi</strong> e <strong>HackenProof</strong>, além de reconhecimentos oficiais pela <strong>NASA</strong>, <strong>Departamento de Defesa dos EUA (U.S. DoD)</strong> e <strong>Mozilla</strong>.
+            </span>
+            <span class="lang-en">
+              Led by independent security researcher <strong>Matheus Camara Carvalho</strong> (<code class="text-emerald-400 font-mono">@mccsecuritybr</code>), <strong>MCC Security BR</strong> operates at the forefront of global cybersecurity — with Critical and Medium vulnerabilities validated and rewarded across DeFi protocols, cross-chain bridges, and blockchain clients on <strong>Immunefi</strong> and <strong>HackenProof</strong>, alongside official recognition from <strong>NASA</strong>, the <strong>U.S. Department of Defense (DoD)</strong>, and <strong>Mozilla</strong>.
             </span>
           </p>
 
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a href="#provas" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-bold text-sm tracking-wide transition shadow-lg shadow-emerald-500/20 flex items-center gap-2">
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap gap-3.5 pt-2">
+            <a href="#credenciais" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-sm tracking-wide transition shadow-xl shadow-emerald-500/20 flex items-center gap-2">
               <span class="lang-pt">Ver Provas &amp; Carta da NASA</span>
-              <span class="lang-en">View Proof &amp; NASA Letter</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              <span class="lang-en">Inspect Proofs &amp; NASA Letter</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
-            <a href="assets/nasa-vdp-letter-peixinn.pdf" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl border border-slate-700 hover:border-emerald-400/60 bg-slate-900/70 text-slate-200 font-medium text-sm transition flex items-center gap-2">
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              <span class="lang-pt">Baixar Carta Oficial NASA (PDF)</span>
-              <span class="lang-en">Download Official NASA Letter (PDF)</span>
+            <a href="assets/nasa-vdp-letter-matheus-camara-carvalho.pdf" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl border border-slate-700 hover:border-emerald-400/60 bg-slate-900/80 text-slate-100 font-semibold text-sm transition flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <span class="lang-pt">Abrir Carta Oficial da NASA (PDF)</span>
+              <span class="lang-en">Open Official NASA Letter (PDF)</span>
             </a>
           </div>
 
-          <!-- Researcher Identity Pill -->
-          <div class="pt-4 flex flex-wrap items-center gap-6 text-xs font-mono text-slate-400 border-t border-slate-800/80">
-            <div><span class="text-slate-500">RESEARCHER:</span> <span class="text-slate-200">Matheus Camara Carvalho</span></div>
-            <div><span class="text-slate-500">HANDLE:</span> <span class="text-emerald-400 font-semibold">peixinn</span></div>
-            <div><span class="text-slate-500">CNPJ:</span> <span class="text-slate-200">67.020.409/0001-40</span></div>
+          <!-- Verified Profiles Bar -->
+          <div class="pt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-slate-400 border-t border-slate-800/80">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>E-MAIL:</span>
+              <a href="mailto:matheus@mccsecuritybr.com" class="text-white hover:text-emerald-400 font-semibold underline decoration-emerald-500/40">matheus@mccsecuritybr.com</a>
+            </div>
+            <div>
+              <span>HANDLE:</span> <span class="text-emerald-400 font-semibold">@mccsecuritybr</span>
+            </div>
+            <div>
+              <span>GITHUB:</span> <a href="https://github.com/MathCarv" target="_blank" rel="noopener" class="text-cyan-400 hover:underline">@MathCarv</a>
+            </div>
           </div>
         </div>
 
-        <!-- Right Column: Terminal / Quick Summary Card -->
+        <!-- Right Column: Verified Researcher Identity Card -->
         <div class="lg:col-span-5">
-          <div class="glass-card rounded-2xl overflow-hidden border border-slate-700/70 shadow-2xl">
-            <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+          <div class="glass-panel rounded-3xl p-6 sm:p-7 border border-slate-700/80 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-44 h-44 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Researcher Profile Header -->
+            <div class="flex items-center gap-4 pb-5 border-b border-slate-800">
+              <img src="assets/matheus-avatar.png" alt="Matheus Camara Carvalho" class="w-16 h-16 rounded-2xl object-cover border-2 border-emerald-400/70 shadow-lg" />
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h2 class="text-lg font-extrabold text-white truncate">Matheus Camara Carvalho</h2>
+                  <span class="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-mono text-[10px] font-bold">KYC VERIFIED</span>
+                </div>
+                <div class="font-mono text-xs text-cyan-400 mt-0.5">@mccsecuritybr • Founder &amp; Lead Researcher</div>
+                <div class="font-mono text-[11px] text-slate-400 mt-0.5">matheus@mccsecuritybr.com</div>
               </div>
-              <span class="font-mono text-xs text-slate-400">peixinn@mccsecuritybr:~# whoami</span>
-              <span class="font-mono text-[11px] text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">VERIFIED</span>
             </div>
-            <div class="p-6 font-mono text-xs sm:text-sm space-y-4">
-              <div>
-                <div class="text-slate-500">// 01. Space &amp; Defense Recognition</div>
-                <div class="mt-1 flex items-center justify-between text-slate-200">
-                  <span>🏛️ NASA VDP Letter of Recognition</span>
-                  <span class="text-emerald-400 font-semibold">Aug 2026</span>
-                </div>
-                <div class="mt-1 flex items-center justify-between text-slate-200">
-                  <span>🛡️ U.S. Dept. of Defense (DoD)</span>
-                  <span class="text-cyan-400 font-semibold">#3974205 Resolved</span>
-                </div>
+
+            <!-- Live Verified Stats Grid -->
+            <div class="grid grid-cols-2 gap-3 my-5">
+              <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800/90">
+                <div class="font-mono text-[11px] text-slate-400 uppercase">Total Bounties Paid</div>
+                <div class="font-mono text-2xl font-extrabold text-emerald-400 mt-0.5">$17,565+</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">$13,497 Immunefi • $4,068 HackenProof</div>
               </div>
 
-              <div class="border-t border-slate-800/90 pt-3">
-                <div class="text-slate-500">// 02. Immunefi Web3 Leaderboard</div>
-                <div class="mt-1 flex items-center justify-between text-slate-200">
-                  <span>⚡ Rank &amp; Tier</span>
-                  <span class="text-emerald-400 font-semibold">Advanced • #214 (2026)</span>
-                </div>
-                <div class="mt-1 flex items-center justify-between text-slate-200">
-                  <span>🎯 Hunt Points / Paid Bugs</span>
-                  <span class="text-slate-100">2,145 pts • 7 Paid Reports</span>
-                </div>
+              <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800/90">
+                <div class="font-mono text-[11px] text-slate-400 uppercase">Paid Web3 Reports</div>
+                <div class="font-mono text-2xl font-extrabold text-white mt-0.5">10 Paid</div>
+                <div class="text-[11px] text-emerald-300 mt-0.5">1 Critical • 8 Medium • 1 Low</div>
               </div>
 
-              <div class="border-t border-slate-800/90 pt-3">
-                <div class="text-slate-500">// 03. HackenProof Web3 Bounties</div>
-                <div class="mt-1 flex items-center justify-between text-slate-200">
-                  <span>🔗 Hyperbridge Protocol</span>
-                  <span class="text-emerald-400 font-semibold">2x Medium Paid ($4,000)</span>
-                </div>
-                <div class="mt-1 flex items-center justify-between text-slate-200">
-                  <span>📊 Total Submissions</span>
-                  <span class="text-slate-100">91 Security Reports</span>
-                </div>
+              <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800/90">
+                <div class="font-mono text-[11px] text-slate-400 uppercase">Immunefi Rank</div>
+                <div class="font-mono text-xl font-extrabold text-cyan-400 mt-0.5">#214 <span class="text-xs font-normal text-slate-400">(2026)</span></div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Advanced • #829 All-Time • 2,145 pts</div>
               </div>
 
-              <div class="border-t border-slate-800/90 pt-3">
-                <div class="text-slate-500">// 04. Core Stack</div>
-                <div class="mt-1.5 flex flex-wrap gap-1.5">
-                  <span class="px-2 py-0.5 rounded bg-slate-800 text-emerald-300">Solidity / EVM</span>
-                  <span class="px-2 py-0.5 rounded bg-slate-800 text-cyan-300">Rust / Substrate</span>
-                  <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-200">Foundry Fork PoC</span>
-                  <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-200">L1/L2 Clients</span>
-                  <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-200">AppSec / VDP</span>
-                </div>
+              <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800/90">
+                <div class="font-mono text-[11px] text-slate-400 uppercase">HackenProof Rank</div>
+                <div class="font-mono text-xl font-extrabold text-emerald-400 mt-0.5">#394 <span class="text-xs font-normal text-slate-400">Global</span></div>
+                <div class="text-[11px] text-slate-400 mt-0.5">386 Rep • 35 Influenced Programs</div>
+              </div>
+            </div>
+
+            <!-- Federal & Space Agency Commendations -->
+            <div class="space-y-2.5 pt-2 border-t border-slate-800 text-xs font-mono">
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/25">
+                <span class="text-blue-200 font-semibold">🏛️ NASA Letter of Recognition</span>
+                <span class="text-blue-300">Matheus C. Carvalho</span>
+              </div>
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25">
+                <span class="text-amber-200 font-semibold">🛡️ U.S. Dept. of Defense &amp; Mozilla</span>
+                <span class="text-amber-300">HackerOne Thanks ✓</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- KPI Metrics Strip -->
-      <div id="reconhecimentos" class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="font-mono text-xs text-emerald-400 uppercase tracking-wider">Immunefi 2026</div>
-          <div class="text-3xl sm:text-4xl font-extrabold text-white mt-1">#214 <span class="text-base font-mono font-normal text-slate-400">Global</span></div>
-          <p class="text-xs text-slate-400 mt-2">
-            <span class="lang-pt">Tier <strong>Advanced</strong> com 2.145 Hunt Points e 7 relatórios pagos (6 Medium, 1 Low).</span>
-            <span class="lang-en"><strong>Advanced</strong> Tier with 2,145 Hunt Points and 7 paid reports (6 Medium, 1 Low).</span>
+      <!-- 4 Main KPI Cards -->
+      <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-emerald-400">
+          <div class="font-mono text-xs text-emerald-400 uppercase font-semibold">Immunefi (@mccsecuritybr)</div>
+          <div class="text-3xl font-extrabold text-white mt-1.5">$13,497 <span class="text-sm font-mono font-normal text-slate-400">Earned</span></div>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            <span class="lang-pt">Tier <strong>Advanced</strong>, <strong>7 BBP Reports pagos</strong> (6 Medium, 1 Low), 6 protocolos protegidos, #214 no Leaderboard 2026 (#829 All-Time).</span>
+            <span class="lang-en"><strong>Advanced</strong> Tier, <strong>7 paid BBP reports</strong> (6 Medium, 1 Low), 6 programs secured, #214 on the 2026 Leaderboard (#829 All-Time).</span>
           </p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="font-mono text-xs text-cyan-400 uppercase tracking-wider">NASA Headquarters</div>
-          <div class="text-3xl sm:text-4xl font-extrabold text-white mt-1">VDP <span class="text-base font-mono font-normal text-slate-400">Honored</span></div>
-          <p class="text-xs text-slate-400 mt-2">
-            <span class="lang-pt">Carta oficial assinada pelo SAISO/OCIO da NASA em reconhecimento à proteção de dados da agência.</span>
-            <span class="lang-en">Official Letter of Recognition signed by NASA's SAISO/OCIO for protecting agency systems.</span>
+        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-cyan-400">
+          <div class="font-mono text-xs text-cyan-400 uppercase font-semibold">HackenProof (@mccsecuritybr)</div>
+          <div class="text-3xl font-extrabold text-white mt-1.5">$4,068.97 <span class="text-sm font-mono font-normal text-slate-400">Earned</span></div>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            <span class="lang-pt">Rank <strong>#394 Global</strong> (386 Reputation), perfil <strong>KYC Verified</strong>, <strong>1 Critical</strong> (Overlayer) + <strong>2 Medium</strong> pagos (Hyperbridge Protocol) e 35 programas influenciados.</span>
+            <span class="lang-en">Rank <strong>#394 Global</strong> (386 Reputation), <strong>KYC Verified</strong>, <strong>1 Critical</strong> (Overlayer) + <strong>2 Medium</strong> paid bugs (Hyperbridge Protocol), 35 influenced programs.</span>
           </p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="font-mono text-xs text-emerald-400 uppercase tracking-wider">HackenProof</div>
-          <div class="text-3xl sm:text-4xl font-extrabold text-white mt-1">91 <span class="text-base font-mono font-normal text-slate-400">Reports</span></div>
-          <p class="text-xs text-slate-400 mt-2">
-            <span class="lang-pt">Incluindo 2 falhas Medium pagas ($4,000) na infraestrutura cross-chain do Hyperbridge Protocol.</span>
-            <span class="lang-en">Including 2 paid Medium vulnerabilities ($4,000) in Hyperbridge Protocol cross-chain infrastructure.</span>
+        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-blue-400">
+          <div class="font-mono text-xs text-blue-400 uppercase font-semibold">NASA Headquarters (VDP)</div>
+          <div class="text-3xl font-extrabold text-white mt-1.5">Official <span class="text-sm font-mono font-normal text-slate-400">Letter</span></div>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            <span class="lang-pt">Carta nominal a <strong>Matheus Camara Carvalho</strong> assinada por Kelvin Taylor (SAISO / NASA OCIO) pela proteção da integridade e disponibilidade da NASA.</span>
+            <span class="lang-en">Nominal Letter of Recognition to <strong>Matheus Camara Carvalho</strong> signed by Kelvin Taylor (SAISO / NASA OCIO) for protecting NASA information integrity.</span>
           </p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl">
-          <div class="font-mono text-xs text-cyan-400 uppercase tracking-wider">U.S. Dept. of Defense</div>
-          <div class="text-3xl sm:text-4xl font-extrabold text-white mt-1">DoD <span class="text-base font-mono font-normal text-slate-400">Resolved</span></div>
-          <p class="text-xs text-slate-400 mt-2">
-            <span class="lang-pt">Vulnerabilidade de Resource Injection (Severidade Medium) validada e corrigida (#3974205).</span>
-            <span class="lang-en">Medium-severity Resource Injection vulnerability validated and remediated (#3974205).</span>
+        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-amber-400">
+          <div class="font-mono text-xs text-amber-400 uppercase font-semibold">U.S. DoD &amp; Mozilla</div>
+          <div class="text-3xl font-extrabold text-white mt-1.5">2x Hall <span class="text-sm font-mono font-normal text-slate-400">of Fame</span></div>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            <span class="lang-pt">Perfil verificado <strong>@mccsecuritybr</strong> no HackerOne (desde Fev/2023) reconhecido oficialmente pelo <strong>U.S. Dept Of Defense</strong> e pela <strong>Mozilla</strong> por relatórios válidos e corrigidos.</span>
+            <span class="lang-en">Verified <strong>@mccsecuritybr</strong> HackerOne profile (since Feb 2023) formally recognized by the <strong>U.S. Dept Of Defense</strong> and <strong>Mozilla</strong> for valid, resolved security reports.</span>
           </p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Proof of Work & Verifiable Credentials Section -->
-  <section id="provas" class="py-20 border-b border-slate-800/80">
+  <!-- Verifiable Credentials & Visual Proofs Section -->
+  <section id="credenciais" class="py-20 border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-14">
-        <div class="font-mono text-xs text-emerald-400 uppercase tracking-widest mb-2">
-          <span class="lang-pt">PORTFÓLIO VERIFICÁVEL • PROOF OF WORK</span>
-          <span class="lang-en">VERIFIABLE TRACK RECORD • PROOF OF WORK</span>
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <div class="max-w-3xl">
+          <div class="font-mono text-xs text-emerald-400 uppercase tracking-widest mb-2">
+            <span class="lang-pt">PROVAS PÚBLICAS VERIFICÁVEIS • PROOF OF WORK</span>
+            <span class="lang-en">VERIFIABLE PUBLIC CREDENTIALS • PROOF OF WORK</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            <span class="lang-pt">Cartas de Reconhecimento, Perfis Oficiais &amp; Bounties Pagos</span>
+            <span class="lang-en">Recognition Letters, Official Profiles &amp; Paid Bounties</span>
+          </h2>
+          <p class="text-slate-400 mt-3 text-sm sm:text-base">
+            <span class="lang-pt">Clique em qualquer documento ou captura de tela abaixo para inspecionar em alta resolução.</span>
+            <span class="lang-en">Click any document or screenshot below to inspect in full high-resolution view.</span>
+          </p>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white">
-          <span class="lang-pt">Reconhecimentos Internacionais &amp; Resultados em Bug Bounty</span>
-          <span class="lang-en">International Recognitions &amp; Bug Bounty Track Record</span>
-        </h2>
-        <p class="text-slate-400 mt-3 text-base">
-          <span class="lang-pt">Todas as conquistas abaixo são documentadas e verificáveis, realizadas sob o alias oficial <code class="text-emerald-400 font-mono">peixinn</code> (Matheus Camara Carvalho) seguindo políticas estritas de divulgação responsável (Safe Harbor / VDP). Clique em qualquer imagem para ampliar.</span>
-          <span class="lang-en">All achievements below are documented and verifiable under the official researcher handle <code class="text-emerald-400 font-mono">peixinn</code> (Matheus Camara Carvalho) following strict Responsible Disclosure and Safe Harbor guidelines. Click any image to enlarge.</span>
-        </p>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-8">
 
-        <!-- 1. NASA Letter of Recognition -->
-        <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+        <!-- CARD 1: NASA Official Letter of Recognition (Nominal to Matheus Camara Carvalho) -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between gap-4 mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-500/15 text-blue-300 border border-blue-500/30">
-                NASA HEADQUARTERS • WASHINGTON, DC
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                🏛️ NASA HEADQUARTERS • WASHINGTON, DC
               </span>
-              <span class="font-mono text-xs text-slate-400">24 Aug 2026</span>
+              <span class="font-mono text-xs text-slate-400">August 24, 2026</span>
             </div>
 
-            <h3 class="text-2xl font-bold text-white">
-              <span class="lang-pt">Carta Oficial de Reconhecimento da NASA (VDP)</span>
-              <span class="lang-en">NASA Official Letter of Recognition (VDP)</span>
+            <h3 class="text-2xl font-extrabold text-white">
+              <span class="lang-pt">Carta de Reconhecimento da NASA — Matheus Camara Carvalho</span>
+              <span class="lang-en">NASA Letter of Recognition — Matheus Camara Carvalho</span>
             </h3>
 
             <p class="text-slate-300 text-sm leading-relaxed mt-3">
               <span class="lang-pt">
-                Emitida pela <strong>National Aeronautics and Space Administration (NASA)</strong> e assinada por <strong>Kelvin Taylor</strong> (<em>Senior Agency Information Security Officer — SAISO, NASA Office of Chief Information Officer</em>), reconhecendo formalmente <strong>peixinn</strong> pela identificação e reporte responsável de vulnerabilidade de segurança que ajudou a proteger a integridade e a disponibilidade das informações da NASA.
+                Carta oficial emitida pela <strong>National Aeronautics and Space Administration (NASA)</strong> endereçada nominalmente a <strong>Matheus Camara Carvalho</strong> e assinada por <strong>Kelvin Taylor</strong> (<em>Senior Agency Information Security Officer — SAISO, NASA Office of Chief Information Officer</em>), reconhecendo a descoberta e o reporte responsável de vulnerabilidade sob o programa VDP da agência espacial americana.
               </span>
               <span class="lang-en">
-                Issued by the <strong>National Aeronautics and Space Administration (NASA)</strong> and signed by <strong>Kelvin Taylor</strong> (<em>Senior Agency Information Security Officer — SAISO, NASA OCIO</em>), formally recognizing <strong>peixinn</strong> for identifying and responsibly reporting a security vulnerability that helped protect the integrity and availability of NASA information.
+                Official letter issued by the <strong>National Aeronautics and Space Administration (NASA)</strong> addressed directly to <strong>Matheus Camara Carvalho</strong> and signed by <strong>Kelvin Taylor</strong> (<em>Senior Agency Information Security Officer — SAISO, NASA OCIO</em>), commending the discovery and responsible disclosure of a security vulnerability under NASA's VDP.
               </span>
             </p>
 
-            <blockquote class="mt-4 p-3.5 rounded-xl bg-slate-900/90 border-l-4 border-emerald-400 text-xs text-slate-300 italic">
-              "Your reporting has facilitated NASA's awareness of otherwise unknown vulnerabilities and helped us protect the integrity and availability of NASA information."
-              <span class="block not-italic font-mono text-[11px] text-slate-400 mt-1">— Kelvin Taylor, SAISO / NASA OCIO</span>
+            <blockquote class="mt-4 p-4 rounded-2xl bg-slate-900/95 border-l-4 border-blue-400 text-xs text-slate-200 italic leading-relaxed">
+              "Dear <strong>Matheus Camara Carvalho</strong>, On behalf of the National Aeronautics and Space Administration and NASA's Vulnerability Disclosure Policy (VDP), we would like to recognize your efforts as an independent security researcher... Your reporting has facilitated NASA's awareness of otherwise unknown vulnerabilities and helped us protect the integrity and availability of NASA information."
+              <span class="block not-italic font-mono text-[11px] text-blue-300 mt-1.5">— Kelvin Taylor, SAISO / NASA OCIO</span>
             </blockquote>
           </div>
 
-          <div class="mt-6 space-y-3">
-            <div onclick="openModal('assets/nasa-vdp-letter.png', 'NASA VDP Letter of Recognition — peixinn')" class="cursor-pointer group relative rounded-xl overflow-hidden border border-slate-700/80 bg-slate-950 max-h-80 flex items-center justify-center">
-              <img src="assets/nasa-vdp-letter.png" alt="Carta Oficial da NASA para peixinn" class="w-full h-72 object-cover object-top group-hover:scale-[1.02] transition duration-300" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent flex items-end justify-between p-4">
-                <span class="text-xs font-mono text-white bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-700">
-                  🔍 <span class="lang-pt">Clique para ampliar a carta</span><span class="lang-en">Click to inspect full letter</span>
+          <div class="mt-6">
+            <div onclick="openModal('assets/nasa-vdp-letter.png', 'NASA Official VDP Letter of Recognition — Dear Matheus Camara Carvalho')" class="cursor-pointer group relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 h-80 flex items-center justify-center">
+              <img src="assets/nasa-vdp-letter.png" alt="NASA VDP Letter of Recognition - Matheus Camara Carvalho" class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition duration-300" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent flex items-end justify-between p-4">
+                <span class="text-xs font-mono text-white bg-slate-900/95 px-3.5 py-2 rounded-xl border border-slate-700 shadow">
+                  🔍 <span class="lang-pt">Ampliar Carta da NASA</span><span class="lang-en">Enlarge NASA Letter</span>
                 </span>
-                <a href="assets/nasa-vdp-letter-peixinn.pdf" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="text-xs font-mono text-emerald-300 bg-emerald-950/90 hover:bg-emerald-900 px-3 py-1.5 rounded-lg border border-emerald-500/40 transition">
-                  📄 PDF Original
+                <a href="assets/nasa-vdp-letter-matheus-camara-carvalho.pdf" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="text-xs font-mono font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 px-3.5 py-2 rounded-xl transition shadow-lg">
+                  📄 Abrir PDF Oficial
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 2. Immunefi Proof -->
-        <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+        <!-- CARD 2: Immunefi Profile & Submissions ($13,497 Earned) -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between gap-4 mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                IMMUNEFI • WEB3 BUG BOUNTY
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                ⚡ IMMUNEFI • @mccsecuritybr
               </span>
-              <span class="font-mono text-xs text-emerald-400">2,145 Hunt Points</span>
+              <span class="font-mono text-xs font-bold text-emerald-400">$13,497 Total Earnings</span>
             </div>
 
-            <h3 class="text-2xl font-bold text-white">
-              <span class="lang-pt">Immunefi — 7 Vulnerabilidades Pagas &amp; Top #214 (2026)</span>
-              <span class="lang-en">Immunefi — 7 Paid Vulnerabilities &amp; Top #214 (2026)</span>
+            <h3 class="text-2xl font-extrabold text-white">
+              <span class="lang-pt">Immunefi — US$ 13.497 em Recompensas &amp; 7 Bugs Pagos</span>
+              <span class="lang-en">Immunefi — $13,497 Total Earnings &amp; 7 Paid Reports</span>
             </h3>
 
             <p class="text-slate-300 text-sm leading-relaxed mt-3">
               <span class="lang-pt">
-                Atuação contínua na maior plataforma de segurança Web3 do mundo (<strong>Immunefi</strong>), alcançando o nível <strong>Advanced</strong> com <strong>2.145 Hunt Points</strong>, posição <strong>#214 no Leaderboard Global de 2026</strong> (#829 All-Time) e <strong>7 relatórios de vulnerabilidade válidos e recompensados</strong> (6 de severidade <em>Medium</em> e 1 de severidade <em>Low</em>) em protocolos DeFi e blockchains em produção.
+                Perfil oficial <strong><code class="text-emerald-400">@mccsecuritybr</code></strong> na <strong>Immunefi</strong> com categoria <strong>Advanced</strong>, <strong>US$ 13.497</strong> em recompensas pagas, <strong>7 relatórios de Bug Bounty validados e pagos</strong> (6 <em>Medium</em> e 1 <em>Low</em>), <strong>6 protocolos Web3 protegidos</strong> e posição <strong>#214 no Leaderboard Global de 2026</strong> (#829 All-Time com 2.145 Hunt Points).
               </span>
               <span class="lang-en">
-                Active track record on <strong>Immunefi</strong>, the world's leading Web3 bug bounty platform, achieving <strong>Advanced</strong> status with <strong>2,145 Hunt Points</strong>, ranked <strong>#214 on the 2026 Global Leaderboard</strong> (#829 All-Time) with <strong>7 valid, paid vulnerability reports</strong> (6 <em>Medium</em>, 1 <em>Low</em>) across live DeFi and blockchain protocols.
+                Official <strong><code class="text-emerald-400">@mccsecuritybr</code></strong> profile on <strong>Immunefi</strong> holding <strong>Advanced</strong> tier, <strong>$13,497</strong> in total earnings, <strong>7 valid &amp; paid Bug Bounty reports</strong> (6 <em>Medium</em>, 1 <em>Low</em>), <strong>6 Web3 programs secured</strong>, ranked <strong>#214 on the 2026 Global Leaderboard</strong> (#829 All-Time with 2,145 Hunt Points).
               </span>
             </p>
 
-            <div class="grid grid-cols-3 gap-3 mt-4">
-              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
-                <div class="font-mono text-lg font-bold text-emerald-400">7 Paid</div>
-                <div class="text-[11px] text-slate-400">6 Med / 1 Low</div>
+            <div class="grid grid-cols-4 gap-2.5 mt-4">
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-emerald-400">$13,497</div>
+                <div class="text-[10px] text-slate-400">Total Earnings</div>
               </div>
-              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
-                <div class="font-mono text-lg font-bold text-white">#214</div>
-                <div class="text-[11px] text-slate-400">2026 Leaderboard</div>
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-white">7 Paid</div>
+                <div class="text-[10px] text-slate-400">6 Med • 1 Low</div>
               </div>
-              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
-                <div class="font-mono text-lg font-bold text-cyan-400">2,145</div>
-                <div class="text-[11px] text-slate-400">Hunt Points</div>
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-cyan-400">#214</div>
+                <div class="text-[10px] text-slate-400">2026 Rank</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-emerald-300">2,145</div>
+                <div class="text-[10px] text-slate-400">Hunt Points</div>
               </div>
             </div>
           </div>
 
-          <div class="mt-6">
-            <div onclick="openModal('assets/immunefi-proof.png', 'Immunefi Dashboard — peixinn (7 Paid Reports, #214 in 2026)')" class="cursor-pointer group relative rounded-xl overflow-hidden border border-slate-700/80 bg-slate-950 max-h-80 flex items-center justify-center">
-              <img src="assets/immunefi-proof.png" alt="Comprovante Immunefi peixinn" class="w-full h-72 object-cover object-left-top group-hover:scale-[1.02] transition duration-300" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex items-end justify-between p-4">
-                <span class="text-xs font-mono text-white bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-700">
-                  🔍 <span class="lang-pt">Clique para ampliar comprovante Immunefi</span><span class="lang-en">Click to enlarge Immunefi proof</span>
+          <div class="mt-6 space-y-3">
+            <div onclick="openModal('assets/immunefi-profile.png', 'Immunefi Official Profile — @mccsecuritybr ($13,497 Total Earnings • Rank #829 All-Time • 7 BBP Reports)')" class="cursor-pointer group relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 h-64 flex items-center justify-center">
+              <img src="assets/immunefi-profile.png" alt="Immunefi Profile @mccsecuritybr" class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition duration-300" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent flex items-end justify-between p-4">
+                <span class="text-xs font-mono text-white bg-slate-900/95 px-3.5 py-2 rounded-xl border border-slate-700">
+                  🔍 <span class="lang-pt">Ampliar Perfil Immunefi ($13,497)</span><span class="lang-en">Enlarge Immunefi Profile ($13,497)</span>
                 </span>
+                <button type="button" onclick="event.stopPropagation(); openModal('assets/immunefi-submissions.png', 'Immunefi Paid Submissions Log — 7 Paid Reports (6 Medium, 1 Low) • #214 in 2026')" class="text-xs font-mono text-emerald-300 bg-slate-900/95 hover:bg-slate-800 px-3 py-2 rounded-xl border border-emerald-500/40 transition">
+                  📋 <span class="lang-pt">Ver Lista de Reports Pagos</span><span class="lang-en">View Paid Reports Log</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 3. HackenProof (Hyperbridge Protocol) -->
-        <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+        <!-- CARD 3: HackenProof Profile & Critical/Medium Bounties ($4,068.97 Earned) -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between gap-4 mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
-                HACKENPROOF • CROSS-CHAIN &amp; WEB3
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                🔗 HACKENPROOF • @mccsecuritybr (KYC ✓)
               </span>
-              <span class="font-mono text-xs text-emerald-400">$4,000 Paid (Hyperbridge)</span>
+              <span class="font-mono text-xs font-bold text-emerald-400">$4,068.97 Total Earnings</span>
             </div>
 
-            <h3 class="text-2xl font-bold text-white">
-              <span class="lang-pt">HackenProof — 91 Submissões &amp; Bounties Pagos no Hyperbridge Protocol</span>
-              <span class="lang-en">HackenProof — 91 Submissions &amp; Paid Bounties on Hyperbridge Protocol</span>
+            <h3 class="text-2xl font-extrabold text-white">
+              <span class="lang-pt">HackenProof — Rank #394, 1 Critical &amp; 2 Medium Pagos</span>
+              <span class="lang-en">HackenProof — Rank #394, 1 Critical &amp; 2 Medium Paid</span>
             </h3>
 
             <p class="text-slate-300 text-sm leading-relaxed mt-3">
               <span class="lang-pt">
-                Mais de <strong>91 relatórios técnicos submetidos</strong> na plataforma <strong>HackenProof</strong> sob o perfil <code>peixinn</code>, destacando-se a descoberta de duas vulnerabilidades distintas de severidade <strong>Medium</strong> no <strong>Hyperbridge Protocol</strong> (<code>HYPERBR-275</code> e <code>HYPERBR-233</code>), ambas validadas, corrigidas e recompensadas com <strong>US$ 2.000 cada (US$ 4.000 no total)</strong>.
+                Perfil verificado via <strong>KYC</strong> (<code>@mccsecuritybr</code>) posicionado no <strong>Rank #394 Global</strong> (386 Reputation, 35 programas influenciados e 91 relatórios submetidos). Inclui a descoberta da falha <strong>Critical</strong> <em>"Cross-Chain Bridging DoS via totalBridgedOut Underflow on Spoke Chains"</em> no protocolo <strong>Overlayer</strong> e duas falhas <strong>Medium</strong> recompensadas com <strong>US$ 2.000 cada (US$ 4.000)</strong> no <strong>Hyperbridge Protocol</strong>.
               </span>
               <span class="lang-en">
-                Over <strong>91 technical reports submitted</strong> on <strong>HackenProof</strong> under handle <code>peixinn</code>, highlighted by two distinct <strong>Medium</strong>-severity vulnerabilities discovered in <strong>Hyperbridge Protocol</strong> (<code>HYPERBR-275</code> and <code>HYPERBR-233</code>), both validated, patched, and rewarded with <strong>$2,000 each ($4,000 total)</strong>.
+                <strong>KYC-Verified</strong> researcher profile (<code>@mccsecuritybr</code>) ranked <strong>#394 Globally</strong> (386 Reputation, 35 influenced programs, 91 submitted reports). Highlighted by the <strong>Critical</strong> finding <em>"Cross-Chain Bridging DoS via totalBridgedOut Underflow on Spoke Chains"</em> in <strong>Overlayer</strong> and two <strong>Medium</strong> vulnerabilities rewarded with <strong>$2,000 each ($4,000)</strong> in <strong>Hyperbridge Protocol</strong>.
               </span>
             </p>
+
+            <div class="grid grid-cols-4 gap-2.5 mt-4">
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-emerald-400">$4,068.97</div>
+                <div class="text-[10px] text-slate-400">Total Earnings</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-purple-400">1 Critical</div>
+                <div class="text-[10px] text-slate-400">+ 2 Medium Paid</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-white">#394</div>
+                <div class="text-[10px] text-slate-400">Global Rank</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-cyan-400">35</div>
+                <div class="text-[10px] text-slate-400">Programs</div>
+              </div>
+            </div>
           </div>
 
-          <div class="mt-6">
-            <div onclick="openModal('assets/hackenproof-proof.png', 'HackenProof Dashboard — peixinn (Hyperbridge Protocol Paid Bounties)')" class="cursor-pointer group relative rounded-xl overflow-hidden border border-slate-700/80 bg-slate-950 flex items-center justify-center">
-              <img src="assets/hackenproof-proof.png" alt="Comprovante HackenProof peixinn" class="w-full h-56 object-cover object-left group-hover:scale-[1.02] transition duration-300" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex items-end justify-between p-4">
-                <span class="text-xs font-mono text-white bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-700">
-                  🔍 <span class="lang-pt">Clique para ampliar comprovante HackenProof</span><span class="lang-en">Click to enlarge HackenProof proof</span>
+          <div class="mt-6 space-y-3">
+            <div onclick="openModal('assets/hackenproof-profile.png', 'HackenProof Official Profile — @mccsecuritybr (Rank #394 • 1 Critical Overlayer + 2 Medium • $4,068.97)')" class="cursor-pointer group relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 h-64 flex items-center justify-center">
+              <img src="assets/hackenproof-profile.png" alt="HackenProof Profile @mccsecuritybr" class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition duration-300" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent flex items-end justify-between p-4">
+                <span class="text-xs font-mono text-white bg-slate-900/95 px-3.5 py-2 rounded-xl border border-slate-700">
+                  🔍 <span class="lang-pt">Ampliar Perfil HackenProof</span><span class="lang-en">Enlarge HackenProof Profile</span>
                 </span>
+                <button type="button" onclick="event.stopPropagation(); openModal('assets/hackenproof-hyperbridge.png', 'HackenProof Paid Bounties — Hyperbridge Protocol (HYPERBR-275 &amp; HYPERBR-233 • $4,000 Paid)')" class="text-xs font-mono text-cyan-300 bg-slate-900/95 hover:bg-slate-800 px-3 py-2 rounded-xl border border-cyan-500/40 transition">
+                  💸 <span class="lang-pt">Ver Bounties Hyperbridge ($4k)</span><span class="lang-en">View Hyperbridge Bounties ($4k)</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 4. U.S. Department of Defense (DoD) -->
-        <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+        <!-- CARD 4: U.S. Department of Defense (DoD) & Mozilla — HackerOne -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between gap-4 mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                U.S. DEPT OF DEFENSE • HACKERONE
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                🛡️ HACKERONE • @mccsecuritybr (VERIFIED ✓)
               </span>
-              <span class="font-mono text-xs text-slate-400">Report #3974205</span>
+              <span class="font-mono text-xs text-slate-400">Joined Feb 2023</span>
             </div>
 
-            <h3 class="text-2xl font-bold text-white">
-              <span class="lang-pt">Departamento de Defesa dos EUA (U.S. DoD) — Falha Resolvida</span>
-              <span class="lang-en">U.S. Department of Defense (DoD) — Resolved Vulnerability</span>
+            <h3 class="text-2xl font-extrabold text-white">
+              <span class="lang-pt">U.S. Dept. of Defense &amp; Mozilla — Reconhecimento Oficial</span>
+              <span class="lang-en">U.S. Dept. of Defense &amp; Mozilla — Official Recognition</span>
             </h3>
 
             <p class="text-slate-300 text-sm leading-relaxed mt-3">
               <span class="lang-pt">
-                Reporte oficial (<code class="text-emerald-400 font-mono">#3974205</code>) submetido por <code>peixinn</code> ao programa do <strong>U.S. Dept Of Defense</strong> em agosto de 2026. A vulnerabilidade de <strong>Resource Injection</strong> foi classificada com severidade <strong>Medium (CVSS 4.0 ~ 6.9)</strong> e concluída com status <strong>Resolved (Closed)</strong> após validação e remediação pela equipe de defesa norte-americana.
+                Perfil verificado (<code class="text-amber-300 font-mono">mccsecuritybr</code>) no <strong>HackerOne</strong> (ativo desde fevereiro de 2023), ostentando agradecimentos oficiais (<em>Thanks / Hall of Fame</em>) do <strong>Departamento de Defesa dos Estados Unidos (U.S. Dept Of Defense)</strong> e da <strong>Mozilla Foundation</strong> por vulnerabilidades de segurança válidas reportadas e corrigidas.
               </span>
               <span class="lang-en">
-                Official vulnerability report (<code class="text-emerald-400 font-mono">#3974205</code>) submitted by <code>peixinn</code> to the <strong>U.S. Dept Of Defense</strong> in August 2026. The <strong>Resource Injection</strong> flaw was rated <strong>Medium severity (CVSS 4.0 ~ 6.9)</strong> and closed as <strong>Resolved</strong> following remediation by DoD security teams.
+                Verified researcher profile (<code class="text-amber-300 font-mono">mccsecuritybr</code>) on <strong>HackerOne</strong> (active since February 2023), earning official acknowledgments (<em>Thanks / Hall of Fame</em>) from both the <strong>U.S. Department of Defense (DoD)</strong> and <strong>Mozilla</strong> for valid, remediated security vulnerabilities.
               </span>
             </p>
+
+            <div class="grid grid-cols-3 gap-2.5 mt-4">
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-amber-400">U.S. DoD</div>
+                <div class="text-[10px] text-slate-400">1 Valid / Closed</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-white">Mozilla</div>
+                <div class="text-[10px] text-slate-400">1 Valid / Closed</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center">
+                <div class="font-mono text-sm sm:text-base font-extrabold text-emerald-400">Verified ✓</div>
+                <div class="text-[10px] text-slate-400">Since Feb 2023</div>
+              </div>
+            </div>
           </div>
 
           <div class="mt-6">
-            <div onclick="openModal('assets/dod-hackerone-proof.png', 'U.S. Dept Of Defense — Report #3974205 Resolved (Medium)')" class="cursor-pointer group relative rounded-xl overflow-hidden border border-slate-700/80 bg-slate-950 max-h-60 flex items-center justify-center p-3">
-              <img src="assets/dod-hackerone-proof.png" alt="Comprovante U.S. Dept of Defense peixinn" class="h-52 object-contain group-hover:scale-105 transition duration-300" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex items-end justify-between p-4">
-                <span class="text-xs font-mono text-white bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-700">
-                  🔍 <span class="lang-pt">Clique para ampliar relatório DoD</span><span class="lang-en">Click to enlarge DoD report</span>
+            <div onclick="openModal('assets/hackerone-dod-mozilla.png', 'HackerOne Official Profile — @mccsecuritybr (U.S. Dept Of Defense &amp; Mozilla Recognition)')" class="cursor-pointer group relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 h-64 flex items-center justify-center">
+              <img src="assets/hackerone-dod-mozilla.png" alt="HackerOne U.S. Dept Of Defense and Mozilla Recognition - mccsecuritybr" class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition duration-300" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent flex items-end justify-between p-4">
+                <span class="text-xs font-mono text-white bg-slate-900/95 px-3.5 py-2 rounded-xl border border-slate-700">
+                  🔍 <span class="lang-pt">Ampliar Comprovante U.S. DoD &amp; Mozilla</span><span class="lang-en">Enlarge U.S. DoD &amp; Mozilla Proof</span>
                 </span>
               </div>
             </div>
@@ -455,116 +532,192 @@
     </div>
   </section>
 
-  <!-- Services & Expertise Section -->
-  <section id="servicos" class="py-20 border-b border-slate-800/80 bg-slate-950/40">
+  <!-- Highlighted Technical Findings Table -->
+  <section id="achados" class="py-20 border-b border-slate-800/80 bg-slate-950/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-14">
+      <div class="max-w-3xl mb-12">
         <div class="font-mono text-xs text-emerald-400 uppercase tracking-widest mb-2">
-          <span class="lang-pt">ESPECIALIDADES TÉCNICAS • SERVIÇOS B2B</span>
-          <span class="lang-en">CORE CAPABILITIES • SECURITY SERVICES</span>
+          <span class="lang-pt">HISTÓRICO DE IMPACTO • SELECTED VULNERABILITY DISCLOSURES</span>
+          <span class="lang-en">SELECTED VULNERABILITY DISCLOSURES • IMPACT LOG</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white">
-          <span class="lang-pt">Engenharia de Segurança &amp; Auditoria de Protocolos</span>
-          <span class="lang-en">Security Engineering &amp; Protocol Auditing</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+          <span class="lang-pt">Destaques de Vulnerabilidades &amp; Pesquisas Recentes</span>
+          <span class="lang-en">Selected Vulnerability Research &amp; Disclosures</span>
         </h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass-card p-7 rounded-2xl">
-          <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-mono font-bold mb-5">01</div>
-          <h3 class="text-xl font-bold text-white mb-2">
+      <div class="glass-panel rounded-3xl overflow-hidden border border-slate-800">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-slate-800 bg-slate-900/90 font-mono text-xs text-slate-400 uppercase">
+                <th class="py-4 px-6">Organização / Protocolo</th>
+                <th class="py-4 px-6">Descrição / Classe da Vulnerabilidade</th>
+                <th class="py-4 px-6">Plataforma</th>
+                <th class="py-4 px-6">Severidade</th>
+                <th class="py-4 px-6 text-right">Status / Reconhecimento</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/80 text-sm">
+              <tr class="hover:bg-slate-900/40 transition">
+                <td class="py-4 px-6 font-bold text-white">Overlayer Protocol</td>
+                <td class="py-4 px-6 font-mono text-xs text-slate-200">Cross-Chain Bridging DoS via <code class="text-emerald-400">totalBridgedOut</code> Underflow on Spoke Chains</td>
+                <td class="py-4 px-6 font-mono text-xs text-cyan-400">HackenProof</td>
+                <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">CRITICAL</span></td>
+                <td class="py-4 px-6 text-right font-mono text-xs text-emerald-400 font-semibold">Paid &amp; Disclosed</td>
+              </tr>
+              <tr class="hover:bg-slate-900/40 transition">
+                <td class="py-4 px-6 font-bold text-white">NASA (National Aeronautics and Space Administration)</td>
+                <td class="py-4 px-6 text-slate-300">Protection of Integrity &amp; Availability of NASA Information Systems (VDP)</td>
+                <td class="py-4 px-6 font-mono text-xs text-blue-400">NASA VDP</td>
+                <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">VDP HONORED</span></td>
+                <td class="py-4 px-6 text-right font-mono text-xs text-blue-300 font-semibold">Official Letter of Recognition</td>
+              </tr>
+              <tr class="hover:bg-slate-900/40 transition">
+                <td class="py-4 px-6 font-bold text-white">Hyperbridge Protocol (2x Reports)</td>
+                <td class="py-4 px-6 font-mono text-xs text-slate-200">Cross-Chain Bridge &amp; State Verification Vulnerabilities (<code class="text-cyan-400">HYPERBR-275</code> &amp; <code class="text-cyan-400">HYPERBR-233</code>)</td>
+                <td class="py-4 px-6 font-mono text-xs text-cyan-400">HackenProof</td>
+                <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">2x MEDIUM</span></td>
+                <td class="py-4 px-6 text-right font-mono text-xs text-emerald-400 font-semibold">$4,000 Paid ($2,000 x 2)</td>
+              </tr>
+              <tr class="hover:bg-slate-900/40 transition">
+                <td class="py-4 px-6 font-bold text-white">DeFi &amp; L1/L2 Protocols (6 Programs Secured)</td>
+                <td class="py-4 px-6 text-slate-300">7 Validated Smart Contract &amp; Blockchain Protocol Vulnerabilities (Private Disclosures)</td>
+                <td class="py-4 px-6 font-mono text-xs text-emerald-400">Immunefi</td>
+                <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">6 MEDIUM • 1 LOW</span></td>
+                <td class="py-4 px-6 text-right font-mono text-xs text-emerald-400 font-semibold">$13,497 Paid (2,145 Hunt Pts)</td>
+              </tr>
+              <tr class="hover:bg-slate-900/40 transition">
+                <td class="py-4 px-6 font-bold text-white">U.S. Department of Defense (DoD)</td>
+                <td class="py-4 px-6 font-mono text-xs text-slate-200">Validated Vulnerability Disclosure in DoD Infrastructure (<code class="text-amber-300">@mccsecuritybr</code>)</td>
+                <td class="py-4 px-6 font-mono text-xs text-amber-400">HackerOne</td>
+                <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">HALL OF FAME</span></td>
+                <td class="py-4 px-6 text-right font-mono text-xs text-emerald-400 font-semibold">Valid / Closed (Thanks ✓)</td>
+              </tr>
+              <tr class="hover:bg-slate-900/40 transition">
+                <td class="py-4 px-6 font-bold text-white">Mozilla</td>
+                <td class="py-4 px-6 font-mono text-xs text-slate-200">Validated Security Vulnerability Report (<code class="text-amber-300">@mccsecuritybr</code>)</td>
+                <td class="py-4 px-6 font-mono text-xs text-amber-400">HackerOne</td>
+                <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">HALL OF FAME</span></td>
+                <td class="py-4 px-6 text-right font-mono text-xs text-emerald-400 font-semibold">Valid / Closed (Thanks ✓)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services & Security Methodology -->
+  <section id="servicos" class="py-20 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="font-mono text-xs text-emerald-400 uppercase tracking-widest mb-2">
+          <span class="lang-pt">SOLUÇÕES CORPORATIVAS • SECURITY ENGINEERING</span>
+          <span class="lang-en">ENTERPRISE SOLUTIONS • SECURITY ENGINEERING</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+          <span class="lang-pt">Serviços de Auditoria &amp; Consultoria Especializada</span>
+          <span class="lang-en">Auditing &amp; Specialized Security Consulting</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-7">
+        <div class="glass-panel p-8 rounded-3xl">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-mono font-bold text-lg mb-6">01</div>
+          <h3 class="text-xl font-bold text-white mb-3">
             <span class="lang-pt">Auditoria de Smart Contracts &amp; DeFi</span>
             <span class="lang-en">Smart Contract &amp; DeFi Auditing</span>
           </h3>
           <p class="text-sm text-slate-400 leading-relaxed">
-            <span class="lang-pt">Verificação formal de invariantes econômicas e revisão profunda em contratos EVM (Solidity), Rust e Move. Todos os achados são acompanhados de provas de conceito determinísticas em fork real da mainnet (Foundry) e recomendação cirúrgica de correção.</span>
-            <span class="lang-en">Formal invariant verification and deep manual review of EVM (Solidity), Rust, and Move smart contracts. Every finding includes deterministic mainnet-fork PoCs (Foundry) and surgical remediation patches.</span>
+            <span class="lang-pt">Revisão manual profunda e verificação formal de invariantes em contratos EVM (Solidity/Vyper), Rust (Solana/Substrate) e Move. Entrega de testes de reprodução determinísticos em fork real da mainnet (Foundry) e patches cirúrgicos de correção.</span>
+            <span class="lang-en">Deep manual code review and formal invariant verification across EVM (Solidity/Vyper), Rust (Solana/Substrate), and Move smart contracts, complete with deterministic Foundry mainnet-fork PoCs and surgical fixes.</span>
           </p>
         </div>
 
-        <div class="glass-card p-7 rounded-2xl">
-          <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-mono font-bold mb-5">02</div>
-          <h3 class="text-xl font-bold text-white mb-2">
-            <span class="lang-pt">Segurança de Blockchains L1/L2 &amp; Bridges</span>
-            <span class="lang-en">L1/L2 Blockchain &amp; Bridge Security</span>
+        <div class="glass-panel p-8 rounded-3xl">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-mono font-bold text-lg mb-6">02</div>
+          <h3 class="text-xl font-bold text-white mb-3">
+            <span class="lang-pt">Segurança de Clientes L1/L2 &amp; Bridges</span>
+            <span class="lang-en">L1/L2 Blockchain &amp; Cross-Chain Bridges</span>
           </h3>
           <p class="text-sm text-slate-400 leading-relaxed">
-            <span class="lang-pt">Auditoria de clientes de execução e consenso (Go, Rust, C++), precompiles, validação de provas criptográficas cross-chain (como Hyperbridge/Polkadot/Substrate), mempool e superfícies RPC contra ataques de negação de serviço e quebras de consenso.</span>
-            <span class="lang-en">Security assessment of execution and consensus clients (Go, Rust, C++), precompiles, cross-chain cryptographic proofs (Hyperbridge/Substrate), mempool, and RPC surfaces against DoS and consensus splits.</span>
+            <span class="lang-pt">Avaliação de segurança em clientes de consenso e execução (Go, Rust, C++), precompiles, validação de mensagens cross-chain, contabilidade de liquidez entre cadeias (Spoke/Hub) e proteção contra DoS assimétrico.</span>
+            <span class="lang-en">Security evaluation of execution and consensus clients (Go, Rust, C++), precompiles, cross-chain message verification, Spoke/Hub liquidity accounting, and protection against asymmetric DoS vectors.</span>
           </p>
         </div>
 
-        <div class="glass-card p-7 rounded-2xl">
-          <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-mono font-bold mb-5">03</div>
-          <h3 class="text-xl font-bold text-white mb-2">
+        <div class="glass-panel p-8 rounded-3xl">
+          <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-mono font-bold text-lg mb-6">03</div>
+          <h3 class="text-xl font-bold text-white mb-3">
             <span class="lang-pt">Pentest, AppSec &amp; Consultoria em TI</span>
-            <span class="lang-en">Penetration Testing &amp; AppSec Consulting</span>
+            <span class="lang-en">Offensive AppSec &amp; IT Security Consulting</span>
           </h3>
           <p class="text-sm text-slate-400 leading-relaxed">
-            <span class="lang-pt">Avaliação ofensiva de aplicações web, APIs, arquiteturas em nuvem e sistemas corporativos com a mesma metodologia aplicada em relatórios reconhecidos pela NASA e pelo Departamento de Defesa dos EUA, além de treinamento técnico e desenvolvimento seguro.</span>
-            <span class="lang-en">Offensive security assessments for web applications, APIs, cloud environments, and enterprise systems using the same methodology recognized by NASA and the U.S. Department of Defense.</span>
+            <span class="lang-pt">Testes de intrusão avançados em aplicações web, APIs e infraestruturas críticas utilizando a mesma metodologia reconhecida pela NASA e pelo U.S. Department of Defense, além de desenvolvimento seguro sob encomenda e treinamentos.</span>
+            <span class="lang-en">Advanced penetration testing for web applications, APIs, and critical infrastructure backed by the methodology recognized by NASA and the U.S. Department of Defense, plus custom secure software development.</span>
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Corporate & Institutional Info (CNPJ) -->
+  <!-- Corporate Entity & Compliance Section (CNPJ) -->
   <section id="institucional" class="py-20 border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-700/80">
+      <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-slate-700/80">
         <div class="grid lg:grid-cols-12 gap-10 items-start">
           <div class="lg:col-span-5 space-y-4">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-xs">
               <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              <span class="lang-pt">REGISTRO CORPORATIVO OFICIAL • BRASIL</span>
-              <span class="lang-en">OFFICIAL CORPORATE ENTITY • BRAZIL</span>
+              <span class="lang-pt">EMPRESA REGISTRADA NO BRASIL • CNPJ ATIVO</span>
+              <span class="lang-en">REGISTERED CORPORATE ENTITY • BRAZIL</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white">
-              <span class="lang-pt">Dados Institucionais &amp; Compliance</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+              <span class="lang-pt">Informações Societárias &amp; Compliance</span>
               <span class="lang-en">Corporate Registration &amp; Compliance</span>
             </h2>
             <p class="text-sm text-slate-400 leading-relaxed">
               <span class="lang-pt">
-                A <strong>MCC Security BR</strong> opera formalmente constituída no Brasil como Sociedade Empresária Limitada, habilitada para prestação de serviços de consultoria em tecnologia da informação, desenvolvimento de software, auditoria de segurança cibernética e recebimento de contratos/bounties nacionais e internacionais.
+                A <strong>MCC Security BR</strong> é a marca operacional da pessoa jurídica <strong>MATHEUS CAMARA CARVALHO TECNOLOGIA DA INFORMACAO LTDA</strong>, regularmente inscrita na Receita Federal do Brasil e habilitada para prestação de serviços internacionais de consultoria em segurança da informação, pesquisa de vulnerabilidades (Bug Bounty) e desenvolvimento de software.
               </span>
               <span class="lang-en">
-                <strong>MCC Security BR</strong> operates as a formally registered Limited Liability Company (LTDA) in Brazil, authorized to provide international cybersecurity consulting, software engineering, vulnerability research, and protocol auditing services.
+                <strong>MCC Security BR</strong> is the operating brand of <strong>MATHEUS CAMARA CARVALHO TECNOLOGIA DA INFORMACAO LTDA</strong>, a Brazilian Limited Liability Company duly registered and authorized for international cybersecurity consulting, vulnerability research (Bug Bounty), and custom software engineering.
               </span>
             </p>
           </div>
 
           <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4 font-mono text-xs">
-            <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
-              <div class="text-slate-500 uppercase">Razão Social / Legal Name</div>
-              <div class="text-slate-100 font-semibold mt-1 text-sm">MATHEUS CAMARA CARVALHO TECNOLOGIA DA INFORMACAO LTDA</div>
+            <div class="p-4 rounded-2xl bg-slate-900/95 border border-slate-800">
+              <div class="text-slate-500 uppercase">Razão Social / Legal Entity Name</div>
+              <div class="text-slate-100 font-bold mt-1 text-sm">MATHEUS CAMARA CARVALHO TECNOLOGIA DA INFORMACAO LTDA</div>
             </div>
 
-            <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
-              <div class="text-slate-500 uppercase">CNPJ (Tax ID — Brazil)</div>
-              <div class="text-emerald-400 font-bold mt-1 text-base">67.020.409/0001-40</div>
-              <div class="text-slate-400 text-[11px] mt-0.5">Matriz • Situação Cadastral: ATIVA</div>
+            <div class="p-4 rounded-2xl bg-slate-900/95 border border-slate-800">
+              <div class="text-slate-500 uppercase">CNPJ (Brazil Tax ID)</div>
+              <div class="text-emerald-400 font-extrabold mt-1 text-base">67.020.409/0001-40</div>
+              <div class="text-slate-400 text-[11px] mt-0.5">Matriz • Situação Cadastral: ATIVA (Desde 27/05/2026)</div>
             </div>
 
-            <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
-              <div class="text-slate-500 uppercase">Responsável / Founder</div>
-              <div class="text-slate-100 font-semibold mt-1 text-sm">Matheus Camara Carvalho (<span class="text-emerald-400">peixinn</span>)</div>
-              <div class="text-slate-400 text-[11px] mt-0.5">matheus@mccsecuritybr.com • Managing Director</div>
+            <div class="p-4 rounded-2xl bg-slate-900/95 border border-slate-800">
+              <div class="text-slate-500 uppercase">Sócio-Administrador &amp; Lead Researcher</div>
+              <div class="text-white font-bold mt-1 text-sm">Matheus Camara Carvalho (<span class="text-emerald-400">@mccsecuritybr</span>)</div>
+              <div class="text-cyan-400 text-[11px] mt-0.5">matheus@mccsecuritybr.com</div>
             </div>
 
-            <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
-              <div class="text-slate-500 uppercase">Sede / Headquarters</div>
-              <div class="text-slate-200 mt-1">R. Thereza Scanavez Lamberti, 280, Sala 529</div>
+            <div class="p-4 rounded-2xl bg-slate-900/95 border border-slate-800">
+              <div class="text-slate-500 uppercase">Endereço Fiscal / Registered Office</div>
+              <div class="text-slate-200 mt-1">R. Thereza Scanavez Lamberti, 280, Cxpst 109 Sala 529</div>
               <div class="text-slate-400 text-[11px] mt-0.5">Parque da Barra I • São Joaquim da Barra - SP • CEP 14606-366</div>
             </div>
 
-            <div class="sm:col-span-2 p-4 rounded-xl bg-slate-900/90 border border-slate-800">
-              <div class="text-slate-500 uppercase mb-1.5">Atividades Econômicas (CNAE) / Authorized Scopes</div>
+            <div class="sm:col-span-2 p-4 rounded-2xl bg-slate-900/95 border border-slate-800">
+              <div class="text-slate-500 uppercase mb-2">CNAEs / Objeto Social Autorizado</div>
               <div class="flex flex-wrap gap-2 text-[11px] text-slate-300">
-                <span class="px-2.5 py-1 rounded bg-slate-800/90">62.04-0-00 Consultoria em TI &amp; Segurança</span>
-                <span class="px-2.5 py-1 rounded bg-slate-800/90">62.01-5-01 Desenvolvimento de Software sob Encomenda</span>
-                <span class="px-2.5 py-1 rounded bg-slate-800/90">62.09-1-00 Suporte Técnico Especializado</span>
-                <span class="px-2.5 py-1 rounded bg-slate-800/90">85.99-6-03 Treinamento em Informática</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-800">62.04-0-00 Consultoria em Tecnologia da Informação</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-800">62.01-5-01 Desenvolvimento de Programas de Computador sob Encomenda</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-800">62.09-1-00 Suporte Técnico e Serviços em TI</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-800">85.99-6-03 Treinamento em Informática</span>
               </div>
             </div>
           </div>
@@ -573,26 +726,26 @@
     </div>
   </section>
 
-  <!-- Contact / Footer -->
-  <footer id="contato" class="py-16 bg-[#04060b] mt-auto">
+  <!-- Footer -->
+  <footer id="contato" class="py-16 bg-[#020408] mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-12 border-b border-slate-800/80">
         <div>
-          <h3 class="text-2xl font-bold text-white">
-            <span class="lang-pt">Entre em Contato com a MCC Security BR</span>
-            <span class="lang-en">Get in Touch with MCC Security BR</span>
+          <h3 class="text-2xl font-extrabold text-white">
+            <span class="lang-pt">Fale Diretamente com Matheus Camara Carvalho</span>
+            <span class="lang-en">Contact Matheus Camara Carvalho Directly</span>
           </h3>
           <p class="text-slate-400 text-sm mt-1">
-            <span class="lang-pt">Para auditorias privadas de Smart Contracts, consultoria em segurança ou verificação de credenciais:</span>
-            <span class="lang-en">For private smart contract audits, security consulting, or credential verification:</span>
+            <span class="lang-pt">Para auditorias privadas de Smart Contracts, consultoria em segurança ou validação institucional:</span>
+            <span class="lang-en">For private smart contract audits, security consulting, or corporate verification:</span>
           </p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-4">
-          <a href="mailto:matheus@mccsecuritybr.com" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-3.5">
+          <a href="mailto:matheus@mccsecuritybr.com" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
             ✉️ matheus@mccsecuritybr.com
           </a>
-          <a href="https://github.com/MathCarv" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl border border-slate-700 hover:border-emerald-400/60 bg-slate-900 text-slate-200 font-mono text-sm transition">
+          <a href="https://github.com/MathCarv" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl border border-slate-700 hover:border-emerald-400/60 bg-slate-900 text-slate-200 font-mono text-sm transition">
             GitHub (@MathCarv)
           </a>
         </div>
@@ -602,23 +755,23 @@
         <div>
           © 2026 MATHEUS CAMARA CARVALHO TECNOLOGIA DA INFORMACAO LTDA • CNPJ 67.020.409/0001-40
         </div>
-        <div>
-          mccsecuritybr.com • All Rights Reserved
+        <div class="text-slate-400">
+          mccsecuritybr.com • matheus@mccsecuritybr.com
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Image Lightbox Modal -->
-  <div id="imageModal" onclick="closeModal()" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8">
+  <!-- Fullscreen Lightbox Modal -->
+  <div id="imageModal" onclick="closeModal()" class="fixed inset-0 z-50 hidden bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-4 sm:p-8">
     <div class="relative max-w-6xl w-full max-h-[92vh] flex flex-col items-center" onclick="event.stopPropagation()">
       <div class="w-full flex items-center justify-between mb-3 px-2">
         <span id="modalCaption" class="font-mono text-xs sm:text-sm text-slate-200"></span>
-        <button onclick="closeModal()" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-xs border border-slate-600">
+        <button onclick="closeModal()" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-xs border border-slate-600">
           ESC / Fechar ✕
         </button>
       </div>
-      <img id="modalImg" src="" alt="Proof preview" class="max-h-[82vh] w-auto rounded-xl border border-slate-700 shadow-2xl bg-slate-900" />
+      <img id="modalImg" src="" alt="Proof preview" class="max-h-[82vh] w-auto rounded-2xl border border-slate-700 shadow-2xl bg-slate-900" />
     </div>
   </div>
 
