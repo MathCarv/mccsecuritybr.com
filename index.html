@@ -9,27 +9,30 @@
     }
   </script>
   <title>MCC Security BR — Cybersecurity &amp; Web3 Auditing | Matheus Camara Carvalho</title>
-  <meta name="description" content="MCC Security BR — Consultoria em Segurança da Informação, Auditoria Web3 e Pesquisa de Vulnerabilidades liderada por Matheus Camara Carvalho (@mccsecuritybr). Reconhecido pela NASA, U.S. Dept. of Defense, Mozilla, Immunefi e HackenProof." />
+  <meta name="description" content="MCC Security BR — Consultoria em Segurança Ofensiva, Auditoria de Smart Contracts e Pesquisa de Vulnerabilidades liderada por Matheus Camara Carvalho (@mccsecuritybr). Reconhecido pela NASA, U.S. Dept. of Defense, Mozilla, Immunefi e HackenProof." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-main: #050811;
-      --bg-elevated: #0b1120;
-      --bg-card: rgba(13, 20, 36, 0.85);
-      --border-subtle: rgba(148, 163, 184, 0.14);
-      --border-hover: rgba(16, 185, 129, 0.5);
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --accent-emerald: #10b981;
-      --accent-cyan: #06b6d4;
-      --accent-blue: #3b82f6;
-      --accent-amber: #f59e0b;
-      --radius-lg: 16px;
-      --radius-xl: 22px;
-      --container: 1220px;
+      --bg-base: #04070e;
+      --bg-surface: #090e1a;
+      --bg-card: #0c1322;
+      --bg-card-alt: #0f172a;
+      --border: rgba(148, 163, 184, 0.14);
+      --border-strong: rgba(148, 163, 184, 0.24);
+      --border-accent: rgba(16, 185, 129, 0.45);
+      --text-white: #f8fafc;
+      --text-light: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --emerald: #10b981;
+      --emerald-light: #34d399;
+      --cyan: #06b6d4;
+      --cyan-light: #22d3ee;
+      --blue: #3b82f6;
+      --amber: #f59e0b;
+      --max-w: 1240px;
     }
 
     * {
@@ -40,20 +43,20 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--bg-main);
-      color: var(--text-primary);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
+      background-color: var(--bg-base);
+      color: var(--text-white);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
     body {
       min-height: 100vh;
-      background-color: var(--bg-main);
+      background-color: var(--bg-base);
       background-image:
-        radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.10) 0%, transparent 35%),
-        radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.09) 0%, transparent 35%),
-        radial-gradient(circle at 50% 75%, rgba(59, 130, 246, 0.06) 0%, transparent 45%);
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(16, 185, 129, 0.14), transparent),
+        radial-gradient(ellipse 60% 40% at 90% 20%, rgba(6, 182, 212, 0.08), transparent);
+      color: var(--text-white);
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
@@ -74,229 +77,250 @@
 
     .container {
       width: 100%;
-      max-width: var(--container);
+      max-width: var(--max-w);
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
     }
 
-    /* Language switcher visibility */
+    /* Language Switch */
     body[data-lang="en"] .lang-pt { display: none !important; }
     body[data-lang="pt"] .lang-en { display: none !important; }
 
-    /* Top Bar */
+    /* Top Status Bar */
     .topbar {
-      background: #020409;
-      border-bottom: 1px solid var(--border-subtle);
+      background: #020408;
+      border-bottom: 1px solid var(--border);
       font-size: 12px;
-      padding: 8px 0;
-      color: var(--text-secondary);
+      padding: 9px 0;
+      color: var(--text-muted);
     }
 
     .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 12px;
     }
 
-    .status-indicator {
+    .topbar-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--accent-emerald);
+      color: var(--emerald-light);
       font-weight: 600;
+      white-space: nowrap;
     }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--accent-emerald);
-      box-shadow: 0 0 10px var(--accent-emerald);
+      background: var(--emerald-light);
+      box-shadow: 0 0 10px var(--emerald-light);
     }
 
-    /* Header / Navbar */
+    .topbar-meta {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      white-space: nowrap;
+    }
+
+    .topbar-meta strong {
+      color: var(--text-white);
+    }
+
+    /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(5, 8, 17, 0.85);
+      background: rgba(4, 7, 14, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border);
     }
 
     .navbar-inner {
-      height: 80px;
+      height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
+      flex-shrink: 0;
     }
 
-    .brand-avatar-wrap {
+    .brand-avatar-box {
       position: relative;
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       flex-shrink: 0;
     }
 
     .brand-avatar {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       object-fit: cover;
-      border: 1.5px solid rgba(16, 185, 129, 0.65);
+      border: 1.5px solid var(--emerald);
     }
 
-    .brand-verified {
+    .brand-check {
       position: absolute;
       bottom: -3px;
       right: -3px;
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
       border-radius: 50%;
-      background: var(--accent-emerald);
+      background: var(--emerald);
       color: #020617;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid var(--bg-main);
+      border: 2px solid var(--bg-base);
     }
 
-    .brand-title {
+    .brand-name {
       font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #fff;
+      white-space: nowrap;
       line-height: 1.15;
     }
 
-    .brand-title span {
-      background: linear-gradient(90deg, var(--accent-emerald), var(--accent-cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .brand-name span {
+      color: var(--emerald-light);
     }
 
-    .brand-sub {
+    .brand-handle {
       font-size: 12px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
+      white-space: nowrap;
     }
 
-    .nav-links {
+    .nav-menu {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
+    }
+
+    .nav-menu a {
       font-size: 14px;
       font-weight: 600;
-      color: #cbd5e1;
+      color: var(--text-light);
+      white-space: nowrap;
     }
 
-    .nav-links a:hover {
-      color: var(--accent-emerald);
+    .nav-menu a:hover {
+      color: var(--emerald-light);
     }
 
-    .nav-actions {
+    .nav-controls {
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .btn-lang {
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
-      padding: 8px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      color: var(--text-white);
+      padding: 9px 14px;
       border-radius: 10px;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.2s ease;
     }
 
     .btn-lang:hover {
-      border-color: var(--accent-emerald);
+      border-color: var(--emerald);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan));
+    .btn-cta {
+      background: linear-gradient(135deg, var(--emerald) 0%, var(--cyan) 100%);
       color: #020617;
       font-weight: 700;
       font-size: 13px;
       padding: 10px 18px;
       border-radius: 10px;
+      white-space: nowrap;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 8px 24px -6px rgba(16, 185, 129, 0.35);
+      box-shadow: 0 8px 20px -6px rgba(16, 185, 129, 0.4);
     }
 
-    .btn-primary:hover {
+    .btn-cta:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.5);
       filter: brightness(1.06);
     }
 
-    .btn-outline {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      color: var(--text-primary);
+    .btn-secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      color: var(--text-white);
       font-weight: 600;
       font-size: 14px;
       padding: 13px 22px;
       border-radius: 12px;
+      white-space: nowrap;
       display: inline-flex;
       align-items: center;
       gap: 10px;
     }
 
-    .btn-outline:hover {
-      border-color: var(--accent-emerald);
+    .btn-secondary:hover {
+      border-color: var(--emerald);
       background: rgba(16, 185, 129, 0.08);
     }
 
     /* Hero Section */
     .hero {
-      padding: 76px 0 84px;
-      border-bottom: 1px solid var(--border-subtle);
-      position: relative;
+      padding: 72px 0 80px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .hero-grid {
+    .hero-layout {
       display: grid;
       grid-template-columns: 1.25fr 0.95fr;
-      gap: 56px;
+      gap: 52px;
       align-items: center;
     }
 
-    .hero-badge {
+    .eyebrow-pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 6px 14px;
       border-radius: 999px;
       background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--emerald-light);
       font-size: 12px;
       font-weight: 600;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
+      white-space: nowrap;
     }
 
-    .hero-title {
-      font-size: clamp(34px, 4.5vw, 56px);
+    .hero-heading {
+      font-size: clamp(36px, 4.4vw, 54px);
       font-weight: 800;
       line-height: 1.08;
       letter-spacing: -0.03em;
@@ -304,239 +328,198 @@
       margin-bottom: 22px;
     }
 
-    .hero-title .gradient-text {
-      background: linear-gradient(90deg, #34d399 0%, #22d3ee 55%, #60a5fa 100%);
+    .hero-heading .grad {
+      background: linear-gradient(90deg, #34d399 0%, #22d3ee 60%, #60a5fa 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero-desc {
+    .hero-lead {
       font-size: 17px;
-      color: #cbd5e1;
-      line-height: 1.7;
+      color: var(--text-light);
+      line-height: 1.72;
       margin-bottom: 32px;
-      max-width: 640px;
     }
 
-    .hero-desc strong {
+    .hero-lead strong {
       color: #ffffff;
       font-weight: 600;
     }
 
-    .hero-cta {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
-    .hero-cta .btn-primary {
+    .hero-buttons .btn-cta {
       font-size: 14px;
       padding: 13px 24px;
       border-radius: 12px;
     }
 
-    .hero-meta {
+    .hero-footer-strip {
       display: flex;
       flex-wrap: wrap;
       gap: 24px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border-subtle);
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
       font-size: 13px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
     }
 
-    .hero-meta strong {
-      color: #fff;
+    /* Executive Identity Card */
+    .id-card {
+      background: linear-gradient(180deg, #0d1527 0%, #080d19 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7);
     }
 
-    /* Executive Profile Card (Hero Right) */
-    .profile-card {
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(9, 14, 26, 0.96) 100%);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: var(--radius-xl);
-      padding: 30px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 40px -10px rgba(16, 185, 129, 0.12);
-    }
-
-    .profile-header {
+    .id-card-top {
       display: flex;
       align-items: center;
       gap: 18px;
       padding-bottom: 22px;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border);
     }
 
-    .profile-avatar {
-      width: 72px;
-      height: 72px;
+    .id-photo {
+      width: 74px;
+      height: 74px;
       border-radius: 18px;
       object-fit: cover;
-      border: 2px solid var(--accent-emerald);
+      border: 2px solid var(--emerald);
       flex-shrink: 0;
     }
 
-    .profile-name {
+    .id-name {
       font-size: 20px;
       font-weight: 800;
       color: #fff;
       line-height: 1.2;
     }
 
-    .profile-handle {
+    .id-role {
       font-size: 13px;
-      color: var(--accent-cyan);
+      color: var(--cyan-light);
       margin-top: 4px;
       font-weight: 600;
     }
 
-    .profile-badges {
+    .id-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
+      margin-top: 9px;
     }
 
-    .badge {
+    .tag {
       font-size: 10px;
       font-weight: 700;
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 6px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      white-space: nowrap;
     }
 
-    .badge-emerald {
-      background: rgba(16, 185, 129, 0.15);
+    .tag-emerald {
+      background: rgba(16, 185, 129, 0.14);
       color: #6ee7b7;
       border: 1px solid rgba(16, 185, 129, 0.35);
     }
 
-    .badge-cyan {
-      background: rgba(6, 182, 212, 0.15);
+    .tag-cyan {
+      background: rgba(6, 182, 212, 0.14);
       color: #67e8f9;
       border: 1px solid rgba(6, 182, 212, 0.35);
     }
 
-    .badge-blue {
-      background: rgba(59, 130, 246, 0.15);
+    .tag-blue {
+      background: rgba(59, 130, 246, 0.14);
       color: #93c5fd;
       border: 1px solid rgba(59, 130, 246, 0.35);
     }
 
-    .badge-amber {
-      background: rgba(245, 158, 11, 0.15);
+    .tag-amber {
+      background: rgba(245, 158, 11, 0.14);
       color: #fcd34d;
       border: 1px solid rgba(245, 158, 11, 0.35);
     }
 
-    .profile-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 22px 0;
-    }
-
-    .stat-box {
-      background: rgba(5, 8, 17, 0.75);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 14px 16px;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      letter-spacing: 0.04em;
-    }
-
-    .stat-value {
-      font-size: 22px;
-      font-weight: 800;
-      color: #fff;
-      margin-top: 2px;
-    }
-
-    .stat-value.emerald { color: #34d399; }
-    .stat-value.cyan { color: #22d3ee; }
-
-    .stat-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .profile-recognitions {
+    .id-rows {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-subtle);
+      margin-top: 20px;
     }
 
-    .rec-pill {
+    .id-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 14px;
+      gap: 12px;
+      padding: 12px 15px;
       border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--border-subtle);
+      background: rgba(4, 7, 14, 0.65);
+      border: 1px solid var(--border);
+      font-size: 13px;
     }
 
-    /* KPI Strip */
-    .kpi-grid {
-      margin-top: 56px;
+    .id-row-left {
+      color: var(--text-light);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .id-row-right {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* 4 KPI Strip */
+    .kpi-strip {
+      margin-top: 52px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
 
-    .kpi-card {
+    .kpi-box {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--emerald);
+      border-radius: 16px;
       padding: 24px;
-      position: relative;
-      overflow: hidden;
       transition: all 0.25s ease;
     }
 
-    .kpi-card:hover {
-      border-color: var(--border-hover);
+    .kpi-box:hover {
       transform: translateY(-3px);
+      border-color: var(--border-strong);
+      border-top-color: var(--emerald-light);
     }
 
-    .kpi-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--accent-emerald);
-    }
+    .kpi-box.cyan { border-top-color: var(--cyan); }
+    .kpi-box.blue { border-top-color: var(--blue); }
+    .kpi-box.amber { border-top-color: var(--amber); }
 
-    .kpi-card.cyan::before { background: var(--accent-cyan); }
-    .kpi-card.blue::before { background: var(--accent-blue); }
-    .kpi-card.amber::before { background: var(--accent-amber); }
-
-    .kpi-tag {
+    .kpi-label {
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: var(--accent-emerald);
+      color: var(--emerald-light);
     }
 
-    .kpi-card.cyan .kpi-tag { color: var(--accent-cyan); }
-    .kpi-card.blue .kpi-tag { color: #60a5fa; }
-    .kpi-card.amber .kpi-tag { color: #fbbf24; }
+    .kpi-box.cyan .kpi-label { color: var(--cyan-light); }
+    .kpi-box.blue .kpi-label { color: #60a5fa; }
+    .kpi-box.amber .kpi-label { color: #fbbf24; }
 
-    .kpi-num {
+    .kpi-value {
       font-size: 30px;
       font-weight: 800;
       color: #fff;
@@ -544,64 +527,162 @@
       letter-spacing: -0.02em;
     }
 
-    .kpi-num small {
-      font-size: 14px;
+    .kpi-value span {
+      font-size: 13px;
       font-weight: 500;
-      color: var(--text-secondary);
+      color: var(--text-muted);
     }
 
-    .kpi-text {
+    .kpi-desc {
       font-size: 13px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       line-height: 1.55;
     }
 
-    /* Section Generic */
+    /* Sections */
     .section {
       padding: 88px 0;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border);
     }
 
-    .section-header {
+    .section-head {
       max-width: 760px;
-      margin-bottom: 52px;
+      margin-bottom: 48px;
     }
 
-    .section-eyebrow {
+    .section-kicker {
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--accent-emerald);
+      color: var(--emerald-light);
       margin-bottom: 10px;
     }
 
-    .section-title {
-      font-size: clamp(26px, 3.2vw, 38px);
+    .section-heading {
+      font-size: clamp(28px, 3.2vw, 38px);
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.02em;
       line-height: 1.2;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .section-subtitle {
+    .section-sub {
       font-size: 16px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       line-height: 1.65;
     }
 
-    /* Credentials & Proofs 2x2 Grid */
-    .proofs-grid {
+    /* NASA Spotlight Split Card */
+    .nasa-spotlight {
+      background: linear-gradient(135deg, #0d162b 0%, #070c18 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 24px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 44px;
+      align-items: center;
+      margin-bottom: 36px;
+      box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.7);
+    }
+
+    .nasa-title {
+      font-size: clamp(24px, 2.6vw, 32px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin: 16px 0 16px;
+    }
+
+    .nasa-text {
+      font-size: 15.5px;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .nasa-quote {
+      background: rgba(4, 7, 14, 0.75);
+      border-left: 3px solid #60a5fa;
+      padding: 16px 20px;
+      border-radius: 0 14px 14px 0;
+      font-size: 13.5px;
+      font-style: italic;
+      color: #e2e8f0;
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .nasa-quote cite {
+      display: block;
+      font-style: normal;
+      font-size: 11.5px;
+      color: #93c5fd;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .nasa-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .nasa-meta-item {
+      background: rgba(4, 7, 14, 0.65);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .nasa-meta-lbl {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .nasa-meta-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 2px;
+    }
+
+    .nasa-doc-preview {
+      background: #04070e;
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+    }
+
+    .nasa-doc-preview:hover {
+      border-color: #60a5fa;
+      transform: translateY(-3px);
+    }
+
+    .nasa-doc-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Platform Proofs Stack / Grid */
+    .platform-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 28px;
     }
 
-    .proof-card {
-      background: linear-gradient(180deg, rgba(13, 20, 36, 0.9) 0%, rgba(7, 11, 21, 0.95) 100%);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
+    .platform-card {
+      background: linear-gradient(180deg, #0c1322 0%, #080d18 100%);
+      border: 1px solid var(--border);
+      border-radius: 22px;
       padding: 32px;
       display: flex;
       flex-direction: column;
@@ -609,26 +690,29 @@
       transition: all 0.25s ease;
     }
 
-    .proof-card:hover {
-      border-color: var(--border-hover);
-      box-shadow: 0 20px 45px -15px rgba(16, 185, 129, 0.16);
+    .platform-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: 0 20px 45px -15px rgba(16, 185, 129, 0.15);
     }
 
-    .proof-top {
+    .platform-card.full-span {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .platform-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       flex-wrap: wrap;
     }
 
-    .proof-date {
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    .proof-title {
+    .platform-title {
       font-size: 22px;
       font-weight: 800;
       color: #fff;
@@ -636,229 +720,179 @@
       margin-bottom: 12px;
     }
 
-    .proof-desc {
+    .platform-desc {
       font-size: 14.5px;
-      color: #cbd5e1;
+      color: var(--text-light);
       line-height: 1.68;
       margin-bottom: 20px;
     }
 
-    .proof-quote {
-      background: rgba(5, 8, 17, 0.85);
-      border-left: 3px solid var(--accent-blue);
-      padding: 14px 18px;
-      border-radius: 0 12px 12px 0;
-      font-size: 13px;
-      font-style: italic;
-      color: #e2e8f0;
-      margin-bottom: 22px;
-      line-height: 1.6;
-    }
-
-    .proof-quote cite {
-      display: block;
-      font-style: normal;
-      font-size: 11px;
-      color: #93c5fd;
-      margin-top: 6px;
-      font-weight: 600;
-    }
-
-    .proof-metrics {
+    .platform-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       margin-bottom: 22px;
     }
 
-    .proof-metric-item {
-      background: rgba(5, 8, 17, 0.8);
-      border: 1px solid var(--border-subtle);
+    .platform-stat {
+      background: rgba(4, 7, 14, 0.75);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 10px 12px;
+      padding: 11px 12px;
       text-align: center;
     }
 
-    .proof-metric-val {
+    .platform-stat-val {
       font-size: 16px;
       font-weight: 800;
       color: #fff;
     }
 
-    .proof-metric-lbl {
+    .platform-stat-lbl {
       font-size: 11px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       margin-top: 2px;
     }
 
-    /* Image Frame — Shows Full Uncropped Screenshot Cleanly */
-    .proof-frame {
-      background: #04070f;
-      border: 1px solid rgba(148, 163, 184, 0.22);
+    /* Browser Window Frame — Natural Aspect Ratio, Zero Cropping, Zero Black Bars */
+    .browser-window {
+      background: #050811;
+      border: 1px solid var(--border-strong);
       border-radius: 14px;
       overflow: hidden;
       cursor: pointer;
       transition: all 0.25s ease;
     }
 
-    .proof-frame:hover {
-      border-color: var(--accent-emerald);
+    .browser-window:hover {
+      border-color: var(--emerald);
+      transform: translateY(-2px);
     }
 
-    .proof-frame-bar {
-      background: #0d1424;
+    .browser-bar {
+      background: #0d1526;
       padding: 9px 14px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 11px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
     }
 
-    .frame-dots {
+    .browser-dots {
       display: flex;
       gap: 6px;
     }
 
-    .frame-dots span {
+    .browser-dots span {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #334155;
     }
 
-    .proof-img-container {
+    .browser-dots span:nth-child(1) { background: #ef4444; opacity: 0.75; }
+    .browser-dots span:nth-child(2) { background: #f59e0b; opacity: 0.75; }
+    .browser-dots span:nth-child(3) { background: #10b981; opacity: 0.75; }
+
+    .browser-body img {
       width: 100%;
-      height: 290px;
-      background: #060913;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      overflow: hidden;
-    }
-
-    .proof-img-container img {
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
       height: auto;
-      object-fit: contain;
-      border-radius: 6px;
-      transition: transform 0.3s ease;
+      display: block;
     }
 
-    .proof-frame:hover .proof-img-container img {
-      transform: scale(1.02);
-    }
-
-    .proof-frame-footer {
-      background: #0a101d;
-      padding: 10px 16px;
-      border-top: 1px solid rgba(148, 163, 184, 0.12);
+    .browser-footer {
+      background: #090f1d;
+      padding: 9px 14px;
+      border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      font-size: 12px;
-      color: #cbd5e1;
+      font-size: 11.5px;
+      color: var(--text-light);
     }
 
-    .link-pdf {
-      background: var(--accent-emerald);
-      color: #020617;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 8px;
-      font-size: 11px;
-    }
-
-    .link-pdf:hover {
-      filter: brightness(1.1);
-    }
-
-    /* Services 3-Col Grid */
+    /* Services 3 Columns */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
 
-    .service-card {
+    .service-box {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      border-radius: 20px;
       padding: 32px;
       transition: all 0.25s ease;
     }
 
-    .service-card:hover {
-      border-color: var(--border-hover);
+    .service-box:hover {
+      border-color: var(--border-accent);
       transform: translateY(-3px);
     }
 
-    .service-num {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+    .service-idx {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
       background: rgba(16, 185, 129, 0.12);
       border: 1px solid rgba(16, 185, 129, 0.35);
-      color: var(--accent-emerald);
+      color: var(--emerald-light);
       font-weight: 800;
-      font-size: 15px;
+      font-size: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
-    .service-title {
-      font-size: 20px;
+    .service-name {
+      font-size: 19px;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .service-text {
+    .service-desc {
       font-size: 14.5px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       line-height: 1.68;
     }
 
-    /* Corporate / CNPJ Block */
-    .corp-box {
-      background: linear-gradient(180deg, rgba(13, 20, 36, 0.92) 0%, rgba(7, 11, 21, 0.96) 100%);
-      border: 1px solid rgba(148, 163, 184, 0.2);
+    /* Corporate Panel */
+    .corp-panel {
+      background: linear-gradient(180deg, #0c1322 0%, #080d18 100%);
+      border: 1px solid var(--border-strong);
       border-radius: 24px;
-      padding: 44px;
+      padding: 42px;
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
       gap: 40px;
       align-items: start;
     }
 
-    .corp-grid {
+    .corp-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
 
-    .corp-item {
-      background: rgba(5, 8, 17, 0.85);
-      border: 1px solid var(--border-subtle);
+    .corp-card {
+      background: rgba(4, 7, 14, 0.75);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 16px 18px;
     }
 
-    .corp-item.full {
+    .corp-card.wide {
       grid-column: span 2;
     }
 
-    .corp-label {
+    .corp-lbl {
       font-size: 11px;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--text-dim);
       letter-spacing: 0.05em;
     }
 
@@ -869,50 +903,50 @@
       margin-top: 4px;
     }
 
-    .corp-val.highlight {
+    .corp-val.emerald {
       font-size: 17px;
-      color: var(--accent-emerald);
+      color: var(--emerald-light);
     }
 
-    .corp-sub {
+    .corp-note {
       font-size: 12px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       margin-top: 2px;
     }
 
-    .cnae-tags {
+    .cnae-list {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 10px;
     }
 
-    .cnae-tag {
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid var(--border-subtle);
-      padding: 5px 10px;
+    .cnae-pill {
+      background: #0d1526;
+      border: 1px solid var(--border);
+      padding: 5px 11px;
       border-radius: 8px;
       font-size: 11.5px;
-      color: #cbd5e1;
+      color: var(--text-light);
     }
 
     /* Footer */
     .footer {
-      background: #020409;
+      background: #020408;
       padding: 64px 0 44px;
     }
 
-    .footer-top {
+    .footer-cta {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 24px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 38px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .footer-bottom {
+    .footer-copy {
       padding-top: 28px;
       display: flex;
       align-items: center;
@@ -920,15 +954,15 @@
       flex-wrap: wrap;
       gap: 16px;
       font-size: 12px;
-      color: var(--text-muted);
+      color: var(--text-dim);
     }
 
     /* Lightbox Modal */
-    .modal-backdrop {
+    .modal {
       position: fixed;
       inset: 0;
       z-index: 999;
-      background: rgba(2, 4, 9, 0.92);
+      background: rgba(2, 4, 8, 0.92);
       backdrop-filter: blur(10px);
       display: none;
       align-items: center;
@@ -936,26 +970,26 @@
       padding: 24px;
     }
 
-    .modal-backdrop.open {
+    .modal.active {
       display: flex;
     }
 
-    .modal-content {
-      max-width: 1100px;
+    .modal-inner {
+      max-width: 1120px;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    .modal-bar {
+    .modal-header {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 12px;
-      color: #e2e8f0;
       font-size: 13px;
+      color: var(--text-light);
     }
 
     .modal-close {
@@ -969,52 +1003,58 @@
       font-weight: 600;
     }
 
-    .modal-img {
-      max-height: 82vh;
+    .modal-image {
+      max-height: 84vh;
       max-width: 100%;
       width: auto;
       height: auto;
       border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: #0b1120;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
     }
 
-    /* Responsive Breakpoints */
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .corp-box {
+    /* Responsive */
+    @media (max-width: 1060px) {
+      .hero-layout,
+      .nasa-spotlight,
+      .platform-card.full-span,
+      .corp-panel {
         grid-template-columns: 1fr;
       }
-      .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .kpi-strip,
+      .platform-grid {
+        grid-template-columns: 1fr 1fr;
       }
-      .proofs-grid {
-        grid-template-columns: 1fr;
+      .platform-card.full-span {
+        grid-column: span 2;
       }
       .services-grid {
         grid-template-columns: 1fr;
       }
-      .nav-links {
+      .nav-menu {
         display: none;
       }
     }
 
-    @media (max-width: 640px) {
-      .kpi-grid,
-      .profile-stats,
-      .corp-grid {
+    @media (max-width: 680px) {
+      .kpi-strip,
+      .platform-grid,
+      .corp-cards,
+      .nasa-meta-grid,
+      .platform-stats {
         grid-template-columns: 1fr;
       }
-      .corp-item.full {
+      .platform-card.full-span,
+      .corp-card.wide {
         grid-column: span 1;
       }
-      .corp-box,
-      .proof-card,
-      .profile-card {
+      .nasa-spotlight,
+      .platform-card,
+      .corp-panel,
+      .id-card {
         padding: 22px;
       }
-      .navbar-inner .btn-primary {
+      .nav-controls .btn-cta {
         display: none;
       }
     }
@@ -1025,55 +1065,57 @@
   <!-- Top Telemetry Bar -->
   <div class="topbar mono">
     <div class="container topbar-inner">
-      <div class="status-indicator">
-        <span class="status-dot"></span>
-        <span>MCC SECURITY BR • OFFENSIVE SECURITY &amp; WEB3 AUDITING</span>
+      <div class="topbar-status">
+        <span class="pulse-dot"></span>
+        <span>MCC SECURITY BR • CYBERSECURITY &amp; WEB3 AUDITING</span>
       </div>
-      <div>
-        <span>HANDLE: <strong style="color:#fff">@mccsecuritybr</strong> &nbsp;|&nbsp; CNPJ: <strong style="color:#fff">67.020.409/0001-40</strong> &nbsp;|&nbsp; <a href="mailto:matheus@mccsecuritybr.com" style="color:#34d399;font-weight:600">matheus@mccsecuritybr.com</a></span>
+      <div class="topbar-meta">
+        <span>HANDLE: <strong>@mccsecuritybr</strong></span>
+        <span>CNPJ: <strong>67.020.409/0001-40</strong></span>
+        <a href="mailto:matheus@mccsecuritybr.com" style="color:#34d399;font-weight:700">matheus@mccsecuritybr.com</a>
       </div>
     </div>
   </div>
 
-  <!-- Header / Navigation -->
+  <!-- Main Header -->
   <header class="navbar">
     <div class="container navbar-inner">
       <a href="#" class="brand">
-        <div class="brand-avatar-wrap">
+        <div class="brand-avatar-box">
           <img src="assets/matheus-avatar.png" alt="Matheus Camara Carvalho" class="brand-avatar" />
-          <span class="brand-verified" title="KYC Verified">✓</span>
+          <span class="brand-check" title="KYC Verified">✓</span>
         </div>
         <div>
-          <div class="brand-title">MCC Security <span>BR</span></div>
-          <div class="brand-sub mono">Matheus Camara Carvalho • @mccsecuritybr</div>
+          <div class="brand-name">MCC Security <span>BR</span></div>
+          <div class="brand-handle mono">Matheus Camara Carvalho</div>
         </div>
       </a>
 
-      <nav class="nav-links">
-        <a href="#credenciais">
-          <span class="lang-pt">Reconhecimentos &amp; Provas</span>
-          <span class="lang-en">Credentials &amp; Proofs</span>
+      <nav class="nav-menu">
+        <a href="#nasa">
+          <span class="lang-pt">Carta da NASA</span>
+          <span class="lang-en">NASA Letter</span>
+        </a>
+        <a href="#plataformas">
+          <span class="lang-pt">Immunefi &amp; HackenProof</span>
+          <span class="lang-en">Immunefi &amp; HackenProof</span>
         </a>
         <a href="#servicos">
-          <span class="lang-pt">Áreas de Atuação</span>
-          <span class="lang-en">Security Services</span>
+          <span class="lang-pt">Serviços</span>
+          <span class="lang-en">Services</span>
         </a>
         <a href="#institucional">
-          <span class="lang-pt">Institucional (CNPJ)</span>
-          <span class="lang-en">Corporate Entity</span>
-        </a>
-        <a href="#contato">
-          <span class="lang-pt">Contato</span>
-          <span class="lang-en">Contact</span>
+          <span class="lang-pt">Empresa (CNPJ)</span>
+          <span class="lang-en">Company</span>
         </a>
       </nav>
 
-      <div class="nav-actions">
+      <div class="nav-controls">
         <button type="button" onclick="toggleLanguage()" class="btn-lang mono">
-          <span class="lang-pt">🇧🇷 PT ⇄ EN</span>
-          <span class="lang-en">🇺🇸 EN ⇄ PT</span>
+          <span class="lang-pt">🇧🇷 PT-BR ⇄ EN</span>
+          <span class="lang-en">🇺🇸 EN ⇄ PT-BR</span>
         </button>
-        <a href="mailto:matheus@mccsecuritybr.com" class="btn-primary mono">
+        <a href="mailto:matheus@mccsecuritybr.com" class="btn-cta mono">
           matheus@mccsecuritybr.com
         </a>
       </div>
@@ -1083,132 +1125,121 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <div class="hero-grid">
+      <div class="hero-layout">
         <div>
-          <div class="hero-badge mono">
-            <span>🛡️ WEB3 &amp; OFFENSIVE SECURITY RESEARCH</span>
+          <div class="eyebrow-pill mono">
+            <span>🛡️ SMART CONTRACT &amp; OFFENSIVE SECURITY</span>
             <span>•</span>
             <span>KYC VERIFIED</span>
           </div>
 
-          <h1 class="hero-title">
-            <span class="lang-pt">Segurança Ofensiva &amp; <span class="gradient-text">Auditoria Web3 de Elite</span></span>
-            <span class="lang-en">Elite Offensive Security &amp; <span class="gradient-text">Web3 Auditing</span></span>
+          <h1 class="hero-heading">
+            <span class="lang-pt">Segurança Ofensiva &amp; <span class="grad">Auditoria Web3</span></span>
+            <span class="lang-en">Offensive Security &amp; <span class="grad">Web3 Auditing</span></span>
           </h1>
 
-          <p class="hero-desc">
+          <p class="hero-lead">
             <span class="lang-pt">
-              Liderada por <strong>Matheus Camara Carvalho</strong> (<code class="mono" style="color:#34d399">@mccsecuritybr</code>), a <strong>MCC Security BR</strong> é uma consultoria brasileira especializada em auditoria de Smart Contracts, segurança de protocolos Blockchain L1/L2 e pesquisa avançada de vulnerabilidades — com histórico comprovado na <strong>Immunefi</strong> e <strong>HackenProof</strong>, e reconhecimento oficial da <strong>NASA</strong>, do <strong>Departamento de Defesa dos EUA (U.S. DoD)</strong> e da <strong>Mozilla</strong>.
+              Fundada e liderada por <strong>Matheus Camara Carvalho</strong> (<code class="mono" style="color:#34d399">@mccsecuritybr</code>), a <strong>MCC Security BR</strong> é uma consultoria brasileira especializada em auditoria de Smart Contracts, segurança de blockchains L1/L2 e pesquisa de vulnerabilidades — com resultados comprovados na <strong>Immunefi</strong> e <strong>HackenProof</strong>, e reconhecimento oficial da <strong>NASA</strong>, do <strong>Departamento de Defesa dos EUA (U.S. DoD)</strong> e da <strong>Mozilla</strong>.
             </span>
             <span class="lang-en">
-              Led by security researcher <strong>Matheus Camara Carvalho</strong> (<code class="mono" style="color:#34d399">@mccsecuritybr</code>), <strong>MCC Security BR</strong> is a cybersecurity firm specialized in Smart Contract auditing, L1/L2 Blockchain security, and advanced vulnerability research — backed by a verified track record on <strong>Immunefi</strong> and <strong>HackenProof</strong>, alongside official recognition from <strong>NASA</strong>, the <strong>U.S. Department of Defense (DoD)</strong>, and <strong>Mozilla</strong>.
+              Founded and led by security researcher <strong>Matheus Camara Carvalho</strong> (<code class="mono" style="color:#34d399">@mccsecuritybr</code>), <strong>MCC Security BR</strong> is a cybersecurity firm specialized in Smart Contract auditing, L1/L2 blockchain security, and vulnerability research — backed by a verified track record on <strong>Immunefi</strong> and <strong>HackenProof</strong>, alongside official recognition from <strong>NASA</strong>, the <strong>U.S. Department of Defense (DoD)</strong>, and <strong>Mozilla</strong>.
             </span>
           </p>
 
-          <div class="hero-cta">
-            <a href="#credenciais" class="btn-primary">
-              <span class="lang-pt">Ver Reconhecimentos &amp; Provas</span>
+          <div class="hero-buttons">
+            <a href="#nasa" class="btn-cta">
+              <span class="lang-pt">Ver Provas &amp; Reconhecimentos</span>
               <span class="lang-en">View Official Credentials</span>
               <span>→</span>
             </a>
-            <a href="assets/nasa-vdp-letter-matheus-camara-carvalho.pdf" target="_blank" rel="noopener" class="btn-outline">
+            <a href="assets/nasa-vdp-letter-matheus-camara-carvalho.pdf" target="_blank" rel="noopener" class="btn-secondary">
               <span>📄</span>
-              <span class="lang-pt">Carta Oficial da NASA (PDF)</span>
-              <span class="lang-en">Official NASA Letter (PDF)</span>
+              <span class="lang-pt">Abrir Carta da NASA (PDF)</span>
+              <span class="lang-en">Open NASA Letter (PDF)</span>
             </a>
           </div>
 
-          <div class="hero-meta mono">
-            <div>E-MAIL: <strong><a href="mailto:matheus@mccsecuritybr.com" style="color:#34d399">matheus@mccsecuritybr.com</a></strong></div>
-            <div>HANDLE: <strong>@mccsecuritybr</strong></div>
-            <div>GITHUB: <strong><a href="https://github.com/mccsecuritybr" target="_blank" rel="noopener" style="color:#22d3ee">@mccsecuritybr</a></strong></div>
+          <div class="hero-footer-strip mono">
+            <div>E-MAIL: <a href="mailto:matheus@mccsecuritybr.com" style="color:#34d399;font-weight:700">matheus@mccsecuritybr.com</a></div>
+            <div>HANDLE: <strong style="color:#fff">@mccsecuritybr</strong></div>
+            <div>GITHUB: <a href="https://github.com/mccsecuritybr" target="_blank" rel="noopener" style="color:#22d3ee;font-weight:700">@mccsecuritybr</a></div>
           </div>
         </div>
 
-        <!-- Right Column: Researcher Profile Summary -->
-        <div class="profile-card">
-          <div class="profile-header">
-            <img src="assets/matheus-avatar.png" alt="Matheus Camara Carvalho" class="profile-avatar" />
+        <!-- Executive Identity Card -->
+        <div class="id-card">
+          <div class="id-card-top">
+            <img src="assets/matheus-avatar.png" alt="Matheus Camara Carvalho" class="id-photo" />
             <div>
-              <div class="profile-name">Matheus Camara Carvalho</div>
-              <div class="profile-handle mono">@mccsecuritybr • Founder &amp; Lead Researcher</div>
-              <div class="profile-badges mono">
-                <span class="badge badge-emerald">KYC Verified ✓</span>
-                <span class="badge badge-cyan">Immunefi Advanced</span>
-                <span class="badge badge-blue">NASA Honored</span>
+              <div class="id-name">Matheus Camara Carvalho</div>
+              <div class="id-role mono">@mccsecuritybr • Founder &amp; Lead Researcher</div>
+              <div class="id-tags mono">
+                <span class="tag tag-emerald">KYC Verified ✓</span>
+                <span class="tag tag-cyan">Immunefi Advanced</span>
+                <span class="tag tag-blue">NASA Honored</span>
               </div>
             </div>
           </div>
 
-          <div class="profile-stats mono">
-            <div class="stat-box">
-              <div class="stat-label">Web3 Bounties Paid</div>
-              <div class="stat-value emerald">$17,565+</div>
-              <div class="stat-sub">$13,497 Immunefi • $4,068 HackenProof</div>
+          <div class="id-rows mono">
+            <div class="id-row">
+              <span class="id-row-left">🏛️ NASA Headquarters (VDP)</span>
+              <span class="id-row-right" style="color:#60a5fa">Letter of Recognition</span>
             </div>
-            <div class="stat-box">
-              <div class="stat-label">Paid Bug Reports</div>
-              <div class="stat-value">10 Paid</div>
-              <div class="stat-sub">1 Critical • 8 Medium • 1 Low</div>
+            <div class="id-row">
+              <span class="id-row-left">⚡ Immunefi (@mccsecuritybr)</span>
+              <span class="id-row-right" style="color:#34d399">$13,497 • 7 Paid Reports</span>
             </div>
-            <div class="stat-box">
-              <div class="stat-label">Immunefi Ranking</div>
-              <div class="stat-value cyan">#214 <small style="font-size:12px;color:#94a3b8">(2026)</small></div>
-              <div class="stat-sub">#829 All-Time • 6 Programs Secured</div>
+            <div class="id-row">
+              <span class="id-row-left">🔗 HackenProof (@mccsecuritybr)</span>
+              <span class="id-row-right" style="color:#22d3ee">$4,068.97 • Rank #394</span>
             </div>
-            <div class="stat-box">
-              <div class="stat-label">HackenProof Ranking</div>
-              <div class="stat-value emerald">#394 <small style="font-size:12px;color:#94a3b8">Global</small></div>
-              <div class="stat-sub">386 Rep • 35 Influenced Programs</div>
+            <div class="id-row">
+              <span class="id-row-left">🛡️ U.S. Dept. of Defense (DoD)</span>
+              <span class="id-row-right" style="color:#fbbf24">HackerOne Hall of Fame ✓</span>
             </div>
-          </div>
-
-          <div class="profile-recognitions mono">
-            <div class="rec-pill">
-              <span>🏛️ NASA — Vulnerability Disclosure Policy</span>
-              <span style="color:#60a5fa">Letter of Recognition</span>
-            </div>
-            <div class="rec-pill">
-              <span>🛡️ U.S. Dept. of Defense &amp; Mozilla</span>
-              <span style="color:#fbbf24">HackerOne Hall of Fame ✓</span>
+            <div class="id-row">
+              <span class="id-row-left">🦊 Mozilla Foundation</span>
+              <span class="id-row-right" style="color:#fbbf24">HackerOne Hall of Fame ✓</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 4 KPI Cards -->
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-tag mono">Immunefi (@mccsecuritybr)</div>
-          <div class="kpi-num mono">$13,497 <small>Earned</small></div>
-          <p class="kpi-text">
-            <span class="lang-pt">Categoria <strong>Advanced</strong> com 7 relatórios de Bug Bounty pagos, 6 protocolos Web3 protegidos e #829 no ranking All-Time (#214 em 2026).</span>
-            <span class="lang-en"><strong>Advanced</strong> tier with 7 paid Bug Bounty reports, 6 secured Web3 programs, ranked #829 All-Time (#214 in 2026).</span>
+      <!-- 4 Main KPI Cards -->
+      <div class="kpi-strip">
+        <div class="kpi-box">
+          <div class="kpi-label mono">Immunefi Track Record</div>
+          <div class="kpi-value mono">$13,497 <span>USD</span></div>
+          <p class="kpi-desc">
+            <span class="lang-pt">Nível <strong>Advanced</strong>, 7 relatórios de Bug Bounty pagos, 6 programas Web3 protegidos e #829 no ranking All-Time (#214 em 2026).</span>
+            <span class="lang-en"><strong>Advanced</strong> tier, 7 paid Bug Bounty reports, 6 secured Web3 programs, and ranked #829 All-Time (#214 in 2026).</span>
           </p>
         </div>
 
-        <div class="kpi-card cyan">
-          <div class="kpi-tag mono">HackenProof (@mccsecuritybr)</div>
-          <div class="kpi-num mono">$4,068.97 <small>Earned</small></div>
-          <p class="kpi-text">
-            <span class="lang-pt">Perfil verificado <strong>KYC</strong> no <strong>Rank #394 Global</strong> (386 Reputation), 3 relatórios pagos (1 Critical, 2 Medium) e 35 programas influenciados.</span>
+        <div class="kpi-box cyan">
+          <div class="kpi-label mono">HackenProof Track Record</div>
+          <div class="kpi-value mono">$4,068.97 <span>USD</span></div>
+          <p class="kpi-desc">
+            <span class="lang-pt">Pesquisador verificado (<strong>KYC</strong>) no <strong>Rank #394 Global</strong> (386 Reputation), 3 relatórios pagos (1 Critical, 2 Medium) e 35 programas influenciados.</span>
             <span class="lang-en"><strong>KYC-verified</strong> researcher at <strong>Rank #394 Global</strong> (386 Reputation), 3 paid reports (1 Critical, 2 Medium), and 35 influenced programs.</span>
           </p>
         </div>
 
-        <div class="kpi-card blue">
-          <div class="kpi-tag mono">NASA Headquarters</div>
-          <div class="kpi-num mono">VDP <small>Letter</small></div>
-          <p class="kpi-text">
+        <div class="kpi-box blue">
+          <div class="kpi-label mono">NASA Headquarters</div>
+          <div class="kpi-value mono">VDP <span>Honored</span></div>
+          <p class="kpi-desc">
             <span class="lang-pt">Carta oficial de reconhecimento nominal a <strong>Matheus Camara Carvalho</strong> assinada pelo SAISO / OCIO da NASA em Washington, DC.</span>
             <span class="lang-en">Official Letter of Recognition addressed to <strong>Matheus Camara Carvalho</strong> signed by NASA's SAISO / OCIO in Washington, DC.</span>
           </p>
         </div>
 
-        <div class="kpi-card amber">
-          <div class="kpi-tag mono">U.S. DoD &amp; Mozilla</div>
-          <div class="kpi-num mono">2x <small>Hall of Fame</small></div>
-          <p class="kpi-text">
+        <div class="kpi-box amber">
+          <div class="kpi-label mono">U.S. DoD &amp; Mozilla</div>
+          <div class="kpi-value mono">2x <span>Hall of Fame</span></div>
+          <p class="kpi-desc">
             <span class="lang-pt">Reconhecimento oficial no <strong>HackerOne</strong> pelo <strong>Departamento de Defesa dos EUA (U.S. DoD)</strong> e pela <strong>Mozilla</strong>.</span>
             <span class="lang-en">Official acknowledgment on <strong>HackerOne</strong> by both the <strong>U.S. Department of Defense (DoD)</strong> and <strong>Mozilla</strong>.</span>
           </p>
@@ -1217,224 +1248,234 @@
     </div>
   </section>
 
-  <!-- Credentials & Visual Proofs Section -->
-  <section id="credenciais" class="section">
+  <!-- Credentials & Proofs Section -->
+  <section id="nasa" class="section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow mono">
+      <div class="section-head">
+        <div class="section-kicker mono">
           <span class="lang-pt">CREDENCIAIS VERIFICÁVEIS • TRACK RECORD</span>
           <span class="lang-en">VERIFIABLE CREDENTIALS • TRACK RECORD</span>
         </div>
-        <h2 class="section-title">
-          <span class="lang-pt">Reconhecimentos Oficiais &amp; Resultados em Plataformas Globais</span>
-          <span class="lang-en">Official Recognitions &amp; Global Platform Track Record</span>
+        <h2 class="section-heading">
+          <span class="lang-pt">Reconhecimentos Oficiais &amp; Perfis Verificados</span>
+          <span class="lang-en">Official Recognitions &amp; Verified Profiles</span>
         </h2>
-        <p class="section-subtitle">
-          <span class="lang-pt">Todas as pesquisas seguem políticas rigorosas de confidencialidade e divulgação responsável (Safe Harbor / VDP). Clique em qualquer imagem abaixo para visualizá-la em tela cheia.</span>
-          <span class="lang-en">All security research strictly adheres to confidentiality and Responsible Disclosure (Safe Harbor / VDP) policies. Click any credential below to inspect in full resolution.</span>
+        <p class="section-sub">
+          <span class="lang-pt">Todas as atividades seguem políticas estritas de confidencialidade e divulgação responsável (Safe Harbor / VDP). Clique em qualquer documento abaixo para ampliar.</span>
+          <span class="lang-en">All engagements strictly follow confidentiality and Responsible Disclosure (Safe Harbor / VDP) guidelines. Click any document below to enlarge.</span>
         </p>
       </div>
 
-      <div class="proofs-grid">
+      <!-- Featured Spotlight: NASA Official Letter (2-Column Split so the vertical A4 letter fits naturally!) -->
+      <div class="nasa-spotlight">
+        <div>
+          <span class="tag tag-blue mono">🏛️ MARY W. JACKSON NASA HEADQUARTERS • WASHINGTON, DC</span>
+          <h3 class="nasa-title">
+            <span class="lang-pt">Carta Oficial de Reconhecimento da NASA — Matheus Camara Carvalho</span>
+            <span class="lang-en">NASA Official Letter of Recognition — Matheus Camara Carvalho</span>
+          </h3>
+          <p class="nasa-text">
+            <span class="lang-pt">
+              Emitida oficialmente pela <strong>National Aeronautics and Space Administration (NASA)</strong> em 24 de agosto de 2026 e endereçada nominalmente a <strong>Matheus Camara Carvalho</strong>. Assinada por <strong>Kelvin Taylor</strong> (<em>Senior Agency Information Security Officer — SAISO, NASA Office of Chief Information Officer</em>), a carta reconhece os esforços técnicos na identificação e reporte responsável de vulnerabilidade sob a política VDP da NASA, protegendo a integridade e a disponibilidade das informações da agência espacial norte-americana.
+            </span>
+            <span class="lang-en">
+              Officially issued by the <strong>National Aeronautics and Space Administration (NASA)</strong> on August 24, 2026, and addressed directly to <strong>Matheus Camara Carvalho</strong>. Signed by <strong>Kelvin Taylor</strong> (<em>Senior Agency Information Security Officer — SAISO, NASA OCIO</em>), the letter commends his efforts in identifying and responsibly reporting a security vulnerability under NASA's VDP, helping protect the integrity and availability of NASA information.
+            </span>
+          </p>
 
-        <!-- 1. NASA Letter -->
-        <div class="proof-card">
-          <div>
-            <div class="proof-top mono">
-              <span class="badge badge-blue">🏛️ NASA HEADQUARTERS • WASHINGTON, DC</span>
-              <span class="proof-date">August 24, 2026</span>
+          <blockquote class="nasa-quote">
+            "Dear <strong>Matheus Camara Carvalho</strong>, On behalf of the National Aeronautics and Space Administration and NASA's Vulnerability Disclosure Policy (VDP), we would like to recognize your efforts as an independent security researcher, both in identifying the vulnerability you submitted and for following NASA's VDP policy and guidelines in responsibly reporting this to us."
+            <cite class="mono">— Kelvin Taylor • Senior Agency Information Security Officer (SAISO) • NASA OCIO</cite>
+          </blockquote>
+
+          <div class="nasa-meta-grid mono">
+            <div class="nasa-meta-item">
+              <div class="nasa-meta-lbl">Destinatário / Honoree</div>
+              <div class="nasa-meta-val">Matheus C. Carvalho</div>
             </div>
-
-            <h3 class="proof-title">
-              <span class="lang-pt">NASA — Carta Oficial de Reconhecimento (VDP)</span>
-              <span class="lang-en">NASA — Official Letter of Recognition (VDP)</span>
-            </h3>
-
-            <p class="proof-desc">
-              <span class="lang-pt">
-                Concedida pela <strong>National Aeronautics and Space Administration (NASA)</strong> a <strong>Matheus Camara Carvalho</strong> e assinada por <strong>Kelvin Taylor</strong> (<em>Senior Agency Information Security Officer — SAISO, NASA Office of Chief Information Officer</em>), em reconhecimento à identificação e reporte responsável de vulnerabilidade sob o programa VDP da agência espacial norte-americana.
-              </span>
-              <span class="lang-en">
-                Awarded by the <strong>National Aeronautics and Space Administration (NASA)</strong> to <strong>Matheus Camara Carvalho</strong> and signed by <strong>Kelvin Taylor</strong> (<em>Senior Agency Information Security Officer — SAISO, NASA OCIO</em>), recognizing the discovery and responsible reporting of a vulnerability under NASA's VDP.
-              </span>
-            </p>
-
-            <blockquote class="proof-quote">
-              "Dear Matheus Camara Carvalho, On behalf of the National Aeronautics and Space Administration and NASA's Vulnerability Disclosure Policy (VDP), we would like to recognize your efforts as an independent security researcher..."
-              <cite class="mono">— Kelvin Taylor, SAISO / NASA OCIO</cite>
-            </blockquote>
+            <div class="nasa-meta-item">
+              <div class="nasa-meta-lbl">Órgão Emissor / Agency</div>
+              <div class="nasa-meta-val">NASA OCIO / SAISO</div>
+            </div>
+            <div class="nasa-meta-item">
+              <div class="nasa-meta-lbl">Data / Date</div>
+              <div class="nasa-meta-val">August 24, 2026</div>
+            </div>
           </div>
 
-          <div class="proof-frame" onclick="openModal('assets/nasa-vdp-letter.png', 'NASA Official VDP Letter of Recognition — Matheus Camara Carvalho')">
-            <div class="proof-frame-bar mono">
-              <div class="frame-dots"><span></span><span></span><span></span></div>
-              <span>VDP Letter of Recognition - Matheus Camara Carvalho.pdf</span>
-            </div>
-            <div class="proof-img-container">
-              <img src="assets/nasa-vdp-letter.png" alt="NASA VDP Letter of Recognition - Matheus Camara Carvalho" />
-            </div>
-            <div class="proof-frame-footer mono">
-              <span>🔍 <span class="lang-pt">Clique para ampliar a carta</span><span class="lang-en">Click to enlarge letter</span></span>
-              <a href="assets/nasa-vdp-letter-matheus-camara-carvalho.pdf" target="_blank" rel="noopener" class="link-pdf" onclick="event.stopPropagation()">📄 Abrir PDF</a>
-            </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="assets/nasa-vdp-letter-matheus-camara-carvalho.pdf" target="_blank" rel="noopener" class="btn-cta mono">
+              📄 <span class="lang-pt">Abrir PDF Oficial da NASA</span><span class="lang-en">Open Official NASA PDF</span>
+            </a>
+            <button type="button" onclick="openModal('assets/nasa-vdp-letter.png', 'NASA Official VDP Letter of Recognition — Matheus Camara Carvalho')" class="btn-secondary mono" style="cursor:pointer;padding:10px 18px;font-size:13px">
+              🔍 <span class="lang-pt">Ampliar Imagem</span><span class="lang-en">Zoom Letter</span>
+            </button>
           </div>
         </div>
 
-        <!-- 2. Immunefi Profile -->
-        <div class="proof-card">
+        <div class="nasa-doc-preview" onclick="openModal('assets/nasa-vdp-letter.png', 'NASA Official VDP Letter of Recognition — Matheus Camara Carvalho')">
+          <img src="assets/nasa-vdp-letter.png" alt="NASA VDP Letter of Recognition - Matheus Camara Carvalho" />
+        </div>
+      </div>
+
+      <!-- Platform Profiles Grid (Natural aspect ratio windows, zero black bars!) -->
+      <div id="plataformas" class="platform-grid">
+
+        <!-- Immunefi Card -->
+        <div class="platform-card">
           <div>
-            <div class="proof-top mono">
-              <span class="badge badge-emerald">⚡ IMMUNEFI • @mccsecuritybr</span>
-              <span class="proof-date" style="color:#34d399;font-weight:700">$13,497 Total Earnings</span>
+            <div class="platform-top mono">
+              <span class="tag tag-emerald">⚡ IMMUNEFI • @mccsecuritybr</span>
+              <span style="font-size:12px;color:#34d399;font-weight:700">$13,497 Total Earnings</span>
             </div>
 
-            <h3 class="proof-title">
+            <h3 class="platform-title">
               <span class="lang-pt">Immunefi — Perfil Advanced &amp; Protocolos Protegidos</span>
-              <span class="lang-en">Immunefi — Advanced Researcher &amp; Secured Programs</span>
+              <span class="lang-en">Immunefi — Advanced Profile &amp; Secured Programs</span>
             </h3>
 
-            <p class="proof-desc">
+            <p class="platform-desc">
               <span class="lang-pt">
-                Atuação verificada na maior plataforma de Bug Bounty Web3 do mundo sob o perfil <strong><code class="mono" style="color:#34d399">mccsecuritybr</code></strong>, somando <strong>US$ 13.497</strong> em recompensas pagas, <strong>7 relatórios de vulnerabilidade validados</strong> (6 <em>Medium</em>, 1 <em>Low</em>), <strong>6 programas Web3 protegidos</strong> e posição <strong>#829 no Ranking Global All-Time</strong> (#214 na temporada 2026).
+                Perfil oficial <strong><code class="mono" style="color:#34d399">mccsecuritybr</code></strong> na <strong>Immunefi</strong> com nível <strong>Advanced</strong>, totalizando <strong>US$ 13.497</strong> em recompensas pagas, <strong>7 relatórios de Bug Bounty validados</strong> (6 <em>Medium</em>, 1 <em>Low</em>), <strong>6 programas Web3 protegidos</strong> e posição <strong>#829 All-Time</strong> (#214 em 2026).
               </span>
               <span class="lang-en">
-                Verified track record on the world's premier Web3 Bug Bounty platform under handle <strong><code class="mono" style="color:#34d399">mccsecuritybr</code></strong>, with <strong>$13,497</strong> in total earnings, <strong>7 validated Bug Bounty reports</strong> (6 <em>Medium</em>, 1 <em>Low</em>), <strong>6 Web3 programs secured</strong>, and ranked <strong>#829 All-Time</strong> (#214 in 2026).
+                Official <strong><code class="mono" style="color:#34d399">mccsecuritybr</code></strong> profile on <strong>Immunefi</strong> holding <strong>Advanced</strong> tier, totaling <strong>$13,497</strong> in paid bounties, <strong>7 validated Bug Bounty reports</strong> (6 <em>Medium</em>, 1 <em>Low</em>), <strong>6 secured Web3 programs</strong>, ranked <strong>#829 All-Time</strong> (#214 in 2026).
               </span>
             </p>
 
-            <div class="proof-metrics mono">
-              <div class="proof-metric-item">
-                <div class="proof-metric-val" style="color:#34d399">$13,497</div>
-                <div class="proof-metric-lbl">Total Earnings</div>
+            <div class="platform-stats mono">
+              <div class="platform-stat">
+                <div class="platform-stat-val" style="color:#34d399">$13,497</div>
+                <div class="platform-stat-lbl">Total Earnings</div>
               </div>
-              <div class="proof-metric-item">
-                <div class="proof-metric-val">7 Reports</div>
-                <div class="proof-metric-lbl">6 Medium • 1 Low</div>
+              <div class="platform-stat">
+                <div class="platform-stat-val">7 Reports</div>
+                <div class="platform-stat-lbl">6 Med • 1 Low</div>
               </div>
-              <div class="proof-metric-item">
-                <div class="proof-metric-val" style="color:#22d3ee">#829</div>
-                <div class="proof-metric-lbl">All-Time Rank</div>
+              <div class="platform-stat">
+                <div class="platform-stat-val" style="color:#22d3ee">#829</div>
+                <div class="platform-stat-lbl">All-Time Rank</div>
               </div>
             </div>
           </div>
 
-          <div class="proof-frame" onclick="openModal('assets/immunefi-profile.png', 'Immunefi Official Profile — @mccsecuritybr ($13,497 Total Earnings • Rank #829 All-Time)')">
-            <div class="proof-frame-bar mono">
-              <div class="frame-dots"><span></span><span></span><span></span></div>
+          <div class="browser-window" onclick="openModal('assets/immunefi-profile.png', 'Immunefi Official Profile — @mccsecuritybr ($13,497 Total Earnings)')">
+            <div class="browser-bar mono">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
               <span>immunefi.com/profile/mccsecuritybr</span>
             </div>
-            <div class="proof-img-container">
+            <div class="browser-body">
               <img src="assets/immunefi-profile.png" alt="Immunefi Profile @mccsecuritybr" />
             </div>
-            <div class="proof-frame-footer mono">
-              <span>🔍 <span class="lang-pt">Clique para ampliar perfil Immunefi</span><span class="lang-en">Click to enlarge Immunefi profile</span></span>
-              <span style="color:#34d399">Verified Profile ✓</span>
+            <div class="browser-footer mono">
+              <span>🔍 <span class="lang-pt">Clique para ampliar</span><span class="lang-en">Click to enlarge</span></span>
+              <span style="color:#34d399">Advanced Tier ✓</span>
             </div>
           </div>
         </div>
 
-        <!-- 3. HackenProof Profile -->
-        <div class="proof-card">
+        <!-- HackenProof Card -->
+        <div class="platform-card">
           <div>
-            <div class="proof-top mono">
-              <span class="badge badge-cyan">🔗 HACKENPROOF • @mccsecuritybr</span>
-              <span class="proof-date" style="color:#22d3ee;font-weight:700">KYC Verified ✓</span>
+            <div class="platform-top mono">
+              <span class="tag tag-cyan">🔗 HACKENPROOF • @mccsecuritybr</span>
+              <span style="font-size:12px;color:#22d3ee;font-weight:700">KYC Verified ✓</span>
             </div>
 
-            <h3 class="proof-title">
+            <h3 class="platform-title">
               <span class="lang-pt">HackenProof — Rank #394 Global &amp; Recompensas Web3</span>
               <span class="lang-en">HackenProof — Rank #394 Global &amp; Web3 Bounties</span>
             </h3>
 
-            <p class="proof-desc">
+            <p class="platform-desc">
               <span class="lang-pt">
-                Pesquisador verificado via <strong>KYC</strong> (<strong><code class="mono" style="color:#22d3ee">@mccsecuritybr</code></strong>) posicionado no <strong>Rank #394 Global</strong> com <strong>386 pontos de Reputação</strong>, <strong>35 programas influenciados</strong> e <strong>US$ 4.068,97</strong> em recompensas pagas por vulnerabilidades de severidade <strong>Critical</strong> e <strong>Medium</strong>.
+                Perfil verificado via <strong>KYC</strong> (<strong><code class="mono" style="color:#22d3ee">@mccsecuritybr</code></strong>) posicionado no <strong>Rank #394 Global</strong> com <strong>386 de Reputação</strong>, <strong>35 programas influenciados</strong> e <strong>US$ 4.068,97</strong> em recompensas pagas (<strong>1 Critical</strong> e <strong>2 Medium</strong>).
               </span>
               <span class="lang-en">
-                <strong>KYC-verified</strong> security researcher (<strong><code class="mono" style="color:#22d3ee">@mccsecuritybr</code></strong>) ranked <strong>#394 Globally</strong> with <strong>386 Reputation</strong>, <strong>35 influenced programs</strong>, and <strong>$4,068.97</strong> in paid bounties across <strong>Critical</strong> and <strong>Medium</strong> severity findings.
+                <strong>KYC-verified</strong> researcher profile (<strong><code class="mono" style="color:#22d3ee">@mccsecuritybr</code></strong>) ranked <strong>#394 Globally</strong> with <strong>386 Reputation</strong>, <strong>35 influenced programs</strong>, and <strong>$4,068.97</strong> in paid bounties (<strong>1 Critical</strong>, <strong>2 Medium</strong>).
               </span>
             </p>
 
-            <div class="proof-metrics mono">
-              <div class="proof-metric-item">
-                <div class="proof-metric-val" style="color:#34d399">$4,068.97</div>
-                <div class="proof-metric-lbl">Total Earnings</div>
+            <div class="platform-stats mono">
+              <div class="platform-stat">
+                <div class="platform-stat-val" style="color:#34d399">$4,068.97</div>
+                <div class="platform-stat-lbl">Total Earnings</div>
               </div>
-              <div class="proof-metric-item">
-                <div class="proof-metric-val" style="color:#c084fc">1 Critical</div>
-                <div class="proof-metric-lbl">+ 2 Medium Paid</div>
+              <div class="platform-stat">
+                <div class="platform-stat-val" style="color:#c084fc">1 Critical</div>
+                <div class="platform-stat-lbl">+ 2 Medium Paid</div>
               </div>
-              <div class="proof-metric-item">
-                <div class="proof-metric-val" style="color:#22d3ee">#394</div>
-                <div class="proof-metric-lbl">Global Rank</div>
+              <div class="platform-stat">
+                <div class="platform-stat-val" style="color:#22d3ee">#394</div>
+                <div class="platform-stat-lbl">Global Rank</div>
               </div>
             </div>
           </div>
 
-          <div class="proof-frame" onclick="openModal('assets/hackenproof-profile.png', 'HackenProof Official Profile — @mccsecuritybr (Rank #394 • KYC Verified • $4,068.97)')">
-            <div class="proof-frame-bar mono">
-              <div class="frame-dots"><span></span><span></span><span></span></div>
+          <div class="browser-window" onclick="openModal('assets/hackenproof-profile.png', 'HackenProof Official Profile — @mccsecuritybr (Rank #394 • KYC Verified • $4,068.97)')">
+            <div class="browser-bar mono">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
               <span>hackenproof.com/hackers/mccsecuritybr</span>
             </div>
-            <div class="proof-img-container">
+            <div class="browser-body">
               <img src="assets/hackenproof-profile.png" alt="HackenProof Profile @mccsecuritybr" />
             </div>
-            <div class="proof-frame-footer mono">
-              <span>🔍 <span class="lang-pt">Clique para ampliar perfil HackenProof</span><span class="lang-en">Click to enlarge HackenProof profile</span></span>
+            <div class="browser-footer mono">
+              <span>🔍 <span class="lang-pt">Clique para ampliar</span><span class="lang-en">Click to enlarge</span></span>
               <span style="color:#22d3ee">KYC Verified ✓</span>
             </div>
           </div>
         </div>
 
-        <!-- 4. U.S. Dept of Defense & Mozilla -->
-        <div class="proof-card">
+        <!-- HackerOne (U.S. Dept of Defense & Mozilla) Full-Width Banner Card -->
+        <div class="platform-card full-span">
           <div>
-            <div class="proof-top mono">
-              <span class="badge badge-amber">🛡️ HACKERONE • @mccsecuritybr</span>
-              <span class="proof-date">Joined Feb 2023</span>
+            <div class="platform-top mono">
+              <span class="tag tag-amber">🛡️ HACKERONE • @mccsecuritybr</span>
+              <span style="font-size:12px;color:#94a3b8">Joined February 2023</span>
             </div>
 
-            <h3 class="proof-title">
-              <span class="lang-pt">U.S. Dept. of Defense &amp; Mozilla — Hall of Fame</span>
-              <span class="lang-en">U.S. Dept. of Defense &amp; Mozilla — Hall of Fame</span>
+            <h3 class="platform-title">
+              <span class="lang-pt">U.S. Department of Defense &amp; Mozilla — Reconhecimento Oficial</span>
+              <span class="lang-en">U.S. Department of Defense &amp; Mozilla — Official Recognition</span>
             </h3>
 
-            <p class="proof-desc">
+            <p class="platform-desc">
               <span class="lang-pt">
-                Perfil verificado (<strong><code class="mono" style="color:#fbbf24">mccsecuritybr</code></strong>) no <strong>HackerOne</strong> desde fevereiro de 2023, reconhecido oficialmente na seção <em>Thanks (Hall of Fame)</em> pelo <strong>Departamento de Defesa dos Estados Unidos (U.S. Dept Of Defense)</strong> e pela <strong>Mozilla</strong> por relatórios válidos e corrigidos.
+                Perfil oficial verificado (<strong><code class="mono" style="color:#fbbf24">mccsecuritybr</code></strong>) no <strong>HackerOne</strong> desde fevereiro de 2023, reconhecido no registro oficial de agradecimentos (<em>Thanks / Hall of Fame</em>) pelo <strong>Departamento de Defesa dos Estados Unidos (U.S. Dept Of Defense)</strong> e pela <strong>Mozilla</strong> por relatórios válidos e resolvidos.
               </span>
               <span class="lang-en">
                 Verified researcher profile (<strong><code class="mono" style="color:#fbbf24">mccsecuritybr</code></strong>) on <strong>HackerOne</strong> since February 2023, officially recognized in the <em>Thanks (Hall of Fame)</em> registry by both the <strong>U.S. Department of Defense (DoD)</strong> and <strong>Mozilla</strong> for valid, resolved security reports.
               </span>
             </p>
 
-            <div class="proof-metrics mono">
-              <div class="proof-metric-item">
-                <div class="proof-metric-val" style="color:#fbbf24">U.S. DoD</div>
-                <div class="proof-metric-lbl">Valid / Closed</div>
+            <div class="platform-stats mono" style="margin-bottom:0">
+              <div class="platform-stat">
+                <div class="platform-stat-val" style="color:#fbbf24">U.S. DoD</div>
+                <div class="platform-stat-lbl">Valid / Closed</div>
               </div>
-              <div class="proof-metric-item">
-                <div class="proof-metric-val">Mozilla</div>
-                <div class="proof-metric-lbl">Valid / Closed</div>
+              <div class="platform-stat">
+                <div class="platform-stat-val">Mozilla</div>
+                <div class="platform-stat-lbl">Valid / Closed</div>
               </div>
-              <div class="proof-metric-item">
-                <div class="proof-metric-val" style="color:#34d399">Verified ✓</div>
-                <div class="proof-metric-lbl">Since Feb 2023</div>
+              <div class="platform-stat">
+                <div class="platform-stat-val" style="color:#34d399">Verified ✓</div>
+                <div class="platform-stat-lbl">Since Feb 2023</div>
               </div>
             </div>
           </div>
 
-          <div class="proof-frame" onclick="openModal('assets/hackerone-dod-mozilla.png', 'HackerOne Official Profile — @mccsecuritybr (U.S. Dept Of Defense &amp; Mozilla Recognition)')">
-            <div class="proof-frame-bar mono">
-              <div class="frame-dots"><span></span><span></span><span></span></div>
+          <div class="browser-window" onclick="openModal('assets/hackerone-dod-mozilla.png', 'HackerOne Official Profile — @mccsecuritybr (U.S. Dept Of Defense &amp; Mozilla Recognition)')">
+            <div class="browser-bar mono">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
               <span>hackerone.com/mccsecuritybr</span>
             </div>
-            <div class="proof-img-container">
+            <div class="browser-body">
               <img src="assets/hackerone-dod-mozilla.png" alt="U.S. Dept Of Defense and Mozilla Recognition - mccsecuritybr" />
             </div>
-            <div class="proof-frame-footer mono">
-              <span>🔍 <span class="lang-pt">Clique para ampliar comprovante DoD &amp; Mozilla</span><span class="lang-en">Click to enlarge DoD &amp; Mozilla proof</span></span>
-              <span style="color:#fbbf24">2x Thanks ✓</span>
+            <div class="browser-footer mono">
+              <span>🔍 <span class="lang-pt">Clique para ampliar comprovante U.S. DoD &amp; Mozilla</span><span class="lang-en">Click to enlarge U.S. DoD &amp; Mozilla proof</span></span>
+              <span style="color:#fbbf24">2x Hall of Fame ✓</span>
             </div>
           </div>
         </div>
@@ -1446,49 +1487,49 @@
   <!-- Services Section -->
   <section id="servicos" class="section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow mono">
+      <div class="section-head">
+        <div class="section-kicker mono">
           <span class="lang-pt">ESPECIALIDADES TÉCNICAS • SERVIÇOS B2B</span>
           <span class="lang-en">CORE CAPABILITIES • SECURITY SERVICES</span>
         </div>
-        <h2 class="section-title">
+        <h2 class="section-heading">
           <span class="lang-pt">Engenharia de Segurança &amp; Auditoria Especializada</span>
           <span class="lang-en">Security Engineering &amp; Specialized Auditing</span>
         </h2>
       </div>
 
       <div class="services-grid">
-        <div class="service-card">
-          <div class="service-num mono">01</div>
-          <h3 class="service-title">
+        <div class="service-box">
+          <div class="service-idx mono">01</div>
+          <h3 class="service-name">
             <span class="lang-pt">Auditoria de Smart Contracts &amp; DeFi</span>
             <span class="lang-en">Smart Contract &amp; DeFi Auditing</span>
           </h3>
-          <p class="service-text">
+          <p class="service-desc">
             <span class="lang-pt">Revisão manual aprofundada e verificação formal de invariantes para protocolos EVM (Solidity/Vyper), Rust e Move, focada na prevenção de perdas financeiras e proteção de liquidez em produção.</span>
             <span class="lang-en">In-depth manual review and formal invariant verification for EVM (Solidity/Vyper), Rust, and Move protocols, focused on preventing financial loss and securing production liquidity.</span>
           </p>
         </div>
 
-        <div class="service-card">
-          <div class="service-num mono">02</div>
-          <h3 class="service-title">
+        <div class="service-box">
+          <div class="service-idx mono">02</div>
+          <h3 class="service-name">
             <span class="lang-pt">Segurança de Blockchains L1/L2 &amp; Bridges</span>
             <span class="lang-en">L1/L2 Blockchain &amp; Bridge Security</span>
           </h3>
-          <p class="service-text">
+          <p class="service-desc">
             <span class="lang-pt">Análise de segurança ofensiva e defensiva em clientes de execução e consenso, pontes cross-chain, validação de estado e infraestrutura de nós contra vetores críticos.</span>
             <span class="lang-en">Offensive and defensive security assessment across execution and consensus clients, cross-chain bridges, state verification, and node infrastructure.</span>
           </p>
         </div>
 
-        <div class="service-card">
-          <div class="service-num mono">03</div>
-          <h3 class="service-title">
+        <div class="service-box">
+          <div class="service-idx mono">03</div>
+          <h3 class="service-name">
             <span class="lang-pt">Pentest, AppSec &amp; Consultoria em TI</span>
             <span class="lang-en">Penetration Testing &amp; IT Consulting</span>
           </h3>
-          <p class="service-text">
+          <p class="service-desc">
             <span class="lang-pt">Avaliação de segurança em aplicações web, APIs e infraestruturas corporativas com metodologia reconhecida por agências internacionais, além de desenvolvimento seguro e capacitação técnica.</span>
             <span class="lang-en">Security assessments for web applications, APIs, and enterprise infrastructure backed by internationally recognized methodology, alongside secure software development.</span>
           </p>
@@ -1497,19 +1538,19 @@
     </div>
   </section>
 
-  <!-- Corporate / CNPJ Section -->
+  <!-- Corporate Entity / CNPJ Section -->
   <section id="institucional" class="section">
     <div class="container">
-      <div class="corp-box">
+      <div class="corp-panel">
         <div>
-          <div class="hero-badge mono" style="margin-bottom:16px">
+          <div class="eyebrow-pill mono" style="margin-bottom:16px">
             <span>🇧🇷 EMPRESA REGISTRADA NO BRASIL • CNPJ ATIVO</span>
           </div>
-          <h2 class="section-title" style="font-size:30px">
+          <h2 class="section-heading" style="font-size:30px">
             <span class="lang-pt">Dados Societários &amp; Compliance</span>
             <span class="lang-en">Corporate Registration &amp; Compliance</span>
           </h2>
-          <p class="section-subtitle" style="font-size:15px;margin-top:12px">
+          <p class="section-sub" style="font-size:15px;margin-top:12px">
             <span class="lang-pt">
               A <strong>MCC Security BR</strong> opera formalmente através da pessoa jurídica <strong>MATHEUS CAMARA CARVALHO TECNOLOGIA DA INFORMACAO LTDA</strong>, regularmente constituída e ativa perante a Receita Federal do Brasil para contratos B2B, consultoria em segurança da informação e programas internacionais de Bug Bounty.
             </span>
@@ -1519,37 +1560,37 @@
           </p>
         </div>
 
-        <div class="corp-grid mono">
-          <div class="corp-item">
-            <div class="corp-label">Razão Social / Legal Entity</div>
+        <div class="corp-cards mono">
+          <div class="corp-card">
+            <div class="corp-lbl">Razão Social / Legal Entity</div>
             <div class="corp-val">MATHEUS CAMARA CARVALHO TECNOLOGIA DA INFORMACAO LTDA</div>
           </div>
 
-          <div class="corp-item">
-            <div class="corp-label">CNPJ (Brazil Tax ID)</div>
-            <div class="corp-val highlight">67.020.409/0001-40</div>
-            <div class="corp-sub">Matriz • Situação Cadastral: ATIVA</div>
+          <div class="corp-card">
+            <div class="corp-lbl">CNPJ (Brazil Tax ID)</div>
+            <div class="corp-val emerald">67.020.409/0001-40</div>
+            <div class="corp-note">Matriz • Situação Cadastral: ATIVA</div>
           </div>
 
-          <div class="corp-item">
-            <div class="corp-label">Responsável / Managing Director</div>
+          <div class="corp-card">
+            <div class="corp-lbl">Responsável / Managing Director</div>
             <div class="corp-val">Matheus Camara Carvalho (<span style="color:#34d399">@mccsecuritybr</span>)</div>
-            <div class="corp-sub" style="color:#22d3ee">matheus@mccsecuritybr.com</div>
+            <div class="corp-note" style="color:#22d3ee">matheus@mccsecuritybr.com</div>
           </div>
 
-          <div class="corp-item">
-            <div class="corp-label">Sede / Registered Office</div>
+          <div class="corp-card">
+            <div class="corp-lbl">Sede / Registered Office</div>
             <div class="corp-val">R. Thereza Scanavez Lamberti, 280, Sala 529</div>
-            <div class="corp-sub">São Joaquim da Barra - SP • CEP 14606-366 • Brasil</div>
+            <div class="corp-note">São Joaquim da Barra - SP • CEP 14606-366 • Brasil</div>
           </div>
 
-          <div class="corp-item full">
-            <div class="corp-label">Atividades Econômicas (CNAEs Autorizados)</div>
-            <div class="cnae-tags">
-              <span class="cnae-tag">62.04-0-00 Consultoria em Tecnologia da Informação</span>
-              <span class="cnae-tag">62.01-5-01 Desenvolvimento de Software sob Encomenda</span>
-              <span class="cnae-tag">62.09-1-00 Suporte Técnico e Serviços em TI</span>
-              <span class="cnae-tag">85.99-6-03 Treinamento em Informática</span>
+          <div class="corp-card wide">
+            <div class="corp-lbl">Atividades Econômicas (CNAEs Autorizados)</div>
+            <div class="cnae-list">
+              <span class="cnae-pill">62.04-0-00 Consultoria em Tecnologia da Informação</span>
+              <span class="cnae-pill">62.01-5-01 Desenvolvimento de Software sob Encomenda</span>
+              <span class="cnae-pill">62.09-1-00 Suporte Técnico e Serviços em TI</span>
+              <span class="cnae-pill">85.99-6-03 Treinamento em Informática</span>
             </div>
           </div>
         </div>
@@ -1560,29 +1601,29 @@
   <!-- Footer -->
   <footer id="contato" class="footer">
     <div class="container">
-      <div class="footer-top">
+      <div class="footer-cta">
         <div>
           <h3 style="font-size:24px;font-weight:800;color:#fff">
             <span class="lang-pt">Entre em Contato com a MCC Security BR</span>
             <span class="lang-en">Get in Touch with MCC Security BR</span>
           </h3>
-          <p style="font-size:14px;color:var(--text-secondary);margin-top:4px">
+          <p style="font-size:14px;color:var(--text-muted);margin-top:4px">
             <span class="lang-pt">Para auditorias privadas, consultoria em segurança ou verificação institucional:</span>
             <span class="lang-en">For private security audits, consulting inquiries, or institutional verification:</span>
           </p>
         </div>
 
         <div style="display:flex;flex-wrap:wrap;gap:12px">
-          <a href="mailto:matheus@mccsecuritybr.com" class="btn-primary mono" style="font-size:14px;padding:13px 22px">
+          <a href="mailto:matheus@mccsecuritybr.com" class="btn-cta mono" style="font-size:14px;padding:13px 22px">
             ✉️ matheus@mccsecuritybr.com
           </a>
-          <a href="https://github.com/mccsecuritybr" target="_blank" rel="noopener" class="btn-outline mono" style="font-size:13px;padding:12px 18px">
+          <a href="https://github.com/mccsecuritybr" target="_blank" rel="noopener" class="btn-secondary mono" style="font-size:13px;padding:12px 18px">
             GitHub (@mccsecuritybr)
           </a>
         </div>
       </div>
 
-      <div class="footer-bottom mono">
+      <div class="footer-copy mono">
         <div>© 2026 MATHEUS CAMARA CARVALHO TECNOLOGIA DA INFORMACAO LTDA • CNPJ 67.020.409/0001-40</div>
         <div>mccsecuritybr.com • matheus@mccsecuritybr.com</div>
       </div>
@@ -1590,13 +1631,13 @@
   </footer>
 
   <!-- Fullscreen Lightbox Modal -->
-  <div id="imageModal" class="modal-backdrop" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="modal-bar mono">
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-inner" onclick="event.stopPropagation()">
+      <div class="modal-header mono">
         <span id="modalCaption"></span>
         <button type="button" class="modal-close mono" onclick="closeModal()">ESC / Fechar ✕</button>
       </div>
-      <img id="modalImg" src="" alt="Preview" class="modal-img" />
+      <img id="modalImg" src="" alt="Preview" class="modal-image" />
     </div>
   </div>
 
@@ -1615,11 +1656,11 @@
       var cap = document.getElementById('modalCaption');
       img.src = src;
       cap.textContent = caption || '';
-      modal.classList.add('open');
+      modal.classList.add('active');
     }
 
     function closeModal() {
-      document.getElementById('imageModal').classList.remove('open');
+      document.getElementById('imageModal').classList.remove('active');
     }
 
     document.addEventListener('keydown', function(e) {
